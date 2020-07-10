@@ -4,6 +4,8 @@ BOARD_AVB_ENABLE := true
 # Default A/B configuration
 ENABLE_AB ?= true
 
+SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
+
 # Enable Dynamic partition
 BOARD_DYNAMIC_PARTITION_ENABLE ?= true
 
@@ -219,6 +221,11 @@ TARGET_MOUNT_POINTS_SYMLINKS := false
 PRODUCT_BOOT_JARS += telephony-ext
 PRODUCT_PACKAGES += telephony-ext
 
+#servicetracker HAL
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.servicetracker@1.1-impl \
+    vendor.qti.hardware.servicetracker@1.1-service
+
 PRODUCT_BOOT_JARS += tcmiface
 
 # Vendor property to enable advanced network scanning
@@ -232,6 +239,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.crypto.volume.filenames_mode = "aes-256-cts" \
 ro.crypto.allow_encrypt_override = true
+
+PRODUCT_PACKAGES += init.qti.dcvs.sh
 
 #----------------------------------------------------------------------
 # wlan specific
