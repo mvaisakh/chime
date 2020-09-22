@@ -1,6 +1,13 @@
 # Enable AVB 2.0
 BOARD_AVB_ENABLE := true
 
+# Enable Virtual A/B
+ENABLE_VIRTUAL_AB := true
+
+ifeq ($(ENABLE_VIRTUAL_AB), true)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+endif
+
 # Default A/B configuration
 ENABLE_AB ?= true
 
@@ -9,11 +16,8 @@ SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
 # Enable Dynamic partition
 BOARD_DYNAMIC_PARTITION_ENABLE ?= true
 
-SHIPPING_API_LEVEL ?= 29
-
-ifeq ($(SHIPPING_API_LEVEL),29)
-PRODUCT_SHIPPING_API_LEVEL := 29
-endif
+SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
 
 # For QSSI builds, we should skip building the system image. Instead we build the
 # "non-system" images (that we support).
@@ -24,12 +28,18 @@ PRODUCT_BUILD_VENDOR_IMAGE := true
 PRODUCT_BUILD_PRODUCT_IMAGE := false
 PRODUCT_BUILD_PRODUCT_SERVICES_IMAGE := false
 PRODUCT_BUILD_ODM_IMAGE := false
+ifeq ($(ENABLE_AB), true)
 PRODUCT_BUILD_CACHE_IMAGE := false
+else
+PRODUCT_BUILD_CACHE_IMAGE := true
+endif
 PRODUCT_BUILD_RAMDISK_IMAGE := true
 PRODUCT_BUILD_USERDATA_IMAGE := true
 
 TARGET_SKIP_OTA_PACKAGE := true
+ifeq ($(ENABLE_AB), true)
 TARGET_SKIP_OTATOOLS_PACKAGE := true
+endif
 
 #BUILD_BROKEN_PHONY_TARGETS := true
 BUILD_BROKEN_DUP_RULES := true
@@ -84,6 +94,9 @@ BOARD_HAVE_QCOM_FM := false
 TARGET_DISABLE_PERF_OPTIMIATIONS := false
 
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
+# Enable incremental FS feature
+PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
 
 # privapp-permissions whitelisting (To Fix CTS :privappPermissionsMustBeEnforced)
 PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
@@ -155,9 +168,9 @@ ifeq ($(ENABLE_AB), true)
 PRODUCT_PACKAGES += update_engine \
     update_engine_client \
     update_verifier \
-    bootctrl.bengal \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.1-impl-qti \
+    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.1-service
 
 PRODUCT_HOST_PACKAGES += \
     brillo_update_payload
@@ -171,9 +184,6 @@ endif
 DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/bengal/framework_manifest.xml
 
 DEVICE_MANIFEST_FILE := device/qcom/bengal/manifest.xml
-ifeq ($(ENABLE_AB), true)
-DEVICE_MANIFEST_FILE += device/qcom/bengal/manifest_ab.xml
-endif
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
 
 # Kernel modules install path
@@ -187,11 +197,6 @@ PRODUCT_COPY_FILES += \
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl \
-    android.hardware.vibrator@1.0-service \
 
 #
 # system prop for opengles version

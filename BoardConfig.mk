@@ -3,9 +3,7 @@
 # Product-specific compile-time definitions.
 #
 
-ifeq ($(SHIPPING_API_LEVEL),29)
-BOARD_SYSTEMSDK_VERSIONS:=29
-endif
+BOARD_SYSTEMSDK_VERSIONS := $(SHIPPING_API_LEVEL)
 
 TARGET_BOARD_PLATFORM := bengal
 TARGET_BOOTLOADER_BOARD_NAME := bengal
@@ -69,7 +67,12 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Define the Dynamic Partition sizes and groups.
 ifeq ($(ENABLE_AB), true)
-   BOARD_SUPER_PARTITION_SIZE := 8589934592
+   ifeq ($(ENABLE_VIRTUAL_AB), true)
+       BOARD_SUPER_PARTITION_SIZE := 4294967296
+   else
+       BOARD_SUPER_PARTITION_SIZE := 8589934592
+   endif
+
    TARGET_RECOVERY_FSTAB := device/qcom/bengal/recovery_AB_dynamic_partition.fstab
 else
    BOARD_SUPER_PARTITION_SIZE := 4294967296
