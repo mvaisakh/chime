@@ -376,13 +376,8 @@ config_khaje_dcc_gcc_mm()
     echo 0x01481140 > $DCC_PATH/config
     echo 0x0148014C > $DCC_PATH/config
     echo 0x0148114C > $DCC_PATH/config
-
     echo 0x01477008 > $DCC_PATH/config
-    echo 0x01439014 > $DCC_PATH/config
-    echo 0x0143900C > $DCC_PATH/config
-    echo 0x01439004 > $DCC_PATH/config
     echo 0x01439000 > $DCC_PATH/config
-    echo 0x01439008 > $DCC_PATH/config
     echo 0x01415010 > $DCC_PATH/config
     echo 0x01416010 > $DCC_PATH/config
     echo 0x0142A00C > $DCC_PATH/config
@@ -571,30 +566,10 @@ config_khaje_dcc_gcc()
     echo 0x143200C  > $DCC_PATH/config
     echo 0x1432034  > $DCC_PATH/config
     echo 0x1432080  > $DCC_PATH/config
-    echo 0x1436024  > $DCC_PATH/config
-    echo 0x1436028  > $DCC_PATH/config
     echo 0x1438010  > $DCC_PATH/config
     echo 0x1438014  > $DCC_PATH/config
     echo 0x1438028  > $DCC_PATH/config
     echo 0x143802C  > $DCC_PATH/config
-    echo 0x1439148  > $DCC_PATH/config
-    echo 0x143914C  > $DCC_PATH/config
-    echo 0x143915C  > $DCC_PATH/config
-    echo 0x1439278  > $DCC_PATH/config
-    echo 0x143927C  > $DCC_PATH/config
-    echo 0x143928C  > $DCC_PATH/config
-    echo 0x14393A8  > $DCC_PATH/config
-    echo 0x14393AC  > $DCC_PATH/config
-    echo 0x14393BC  > $DCC_PATH/config
-    echo 0x14394D8  > $DCC_PATH/config
-    echo 0x14394DC  > $DCC_PATH/config
-    echo 0x14394EC  > $DCC_PATH/config
-    echo 0x1439608  > $DCC_PATH/config
-    echo 0x143960C  > $DCC_PATH/config
-    echo 0x143961C  > $DCC_PATH/config
-    echo 0x1439738  > $DCC_PATH/config
-    echo 0x143973C  > $DCC_PATH/config
-    echo 0x143974C  > $DCC_PATH/config
     echo 0x143B000  > $DCC_PATH/config
     echo 0x143B004  > $DCC_PATH/config
     echo 0x143B008  > $DCC_PATH/config
@@ -605,7 +580,6 @@ config_khaje_dcc_gcc()
     echo 0x143B01C  > $DCC_PATH/config
     echo 0x143B020  > $DCC_PATH/config
     echo 0x143B024  > $DCC_PATH/config
-    echo 0x143B028  > $DCC_PATH/config
     echo 0x143D01C  > $DCC_PATH/config
     echo 0x143D020  > $DCC_PATH/config
     echo 0x143E000  > $DCC_PATH/config
@@ -618,7 +592,6 @@ config_khaje_dcc_gcc()
     echo 0x143E01C  > $DCC_PATH/config
     echo 0x143E020  > $DCC_PATH/config
     echo 0x143E024  > $DCC_PATH/config
-    echo 0x143E028  > $DCC_PATH/config
     echo 0x143E060  > $DCC_PATH/config
     echo 0x143F000  > $DCC_PATH/config
     echo 0x143F004  > $DCC_PATH/config
@@ -630,7 +603,6 @@ config_khaje_dcc_gcc()
     echo 0x143F01C  > $DCC_PATH/config
     echo 0x143F020  > $DCC_PATH/config
     echo 0x143F024  > $DCC_PATH/config
-    echo 0x143F028  > $DCC_PATH/config
     echo 0x1442018  > $DCC_PATH/config
     echo 0x144201C  > $DCC_PATH/config
     echo 0x1442030  > $DCC_PATH/config
@@ -657,10 +629,6 @@ config_khaje_dcc_gcc()
     echo 0x144E008  > $DCC_PATH/config
     echo 0x144F004  > $DCC_PATH/config
     echo 0x144F008  > $DCC_PATH/config
-    echo 0x1450000  > $DCC_PATH/config
-    echo 0x1450004  > $DCC_PATH/config
-    echo 0x145001C  > $DCC_PATH/config
-    echo 0x1450020  > $DCC_PATH/config
     echo 0x1451000  > $DCC_PATH/config
     echo 0x1451004  > $DCC_PATH/config
     echo 0x145101C  > $DCC_PATH/config
@@ -673,42 +641,9 @@ config_khaje_dcc_gcc()
     echo 0x1452008  > $DCC_PATH/config
     echo 0x1452028  > $DCC_PATH/config
     echo 0x145202C  > $DCC_PATH/config
-    echo 0x1453004  > $DCC_PATH/config
-    echo 0x1453008  > $DCC_PATH/config
-    echo 0x1453024  > $DCC_PATH/config
-    echo 0x1453028  > $DCC_PATH/config
-    echo 0x1453044  > $DCC_PATH/config
-    echo 0x1453048  > $DCC_PATH/config
     echo 0x1454004  > $DCC_PATH/config
-    echo 0x1454008  > $DCC_PATH/config
-    echo 0x145400C  > $DCC_PATH/config
-    echo 0x1454010  > $DCC_PATH/config
-    echo 0x1454014  > $DCC_PATH/config
-    echo 0x145403C  > $DCC_PATH/config
-    echo 0x1454040  > $DCC_PATH/config
-    echo 0x1454044  > $DCC_PATH/config
-    echo 0x1454048  > $DCC_PATH/config
-    echo 0x145404C  > $DCC_PATH/config
     echo 0x1455000  > $DCC_PATH/config
     echo 0x1455004  > $DCC_PATH/config
-    echo 0x1455030  > $DCC_PATH/config
-    echo 0x1455034  > $DCC_PATH/config
-    echo 0x145506C  > $DCC_PATH/config
-    echo 0x1455070  > $DCC_PATH/config
-    echo 0x14550A4  > $DCC_PATH/config
-    echo 0x14550A8  > $DCC_PATH/config
-    echo 0x14550E0  > $DCC_PATH/config
-    echo 0x14550E4  > $DCC_PATH/config
-    echo 0x145607C  > $DCC_PATH/config
-    echo 0x1456080  > $DCC_PATH/config
-    echo 0x1456084  > $DCC_PATH/config
-    echo 0x1456088  > $DCC_PATH/config
-    echo 0x145608C  > $DCC_PATH/config
-    echo 0x14560BC  > $DCC_PATH/config
-    echo 0x14560C0  > $DCC_PATH/config
-    echo 0x14560C4  > $DCC_PATH/config
-    echo 0x14560C8  > $DCC_PATH/config
-    echo 0x14560CC  > $DCC_PATH/config
     echo 0x1457000  > $DCC_PATH/config
     echo 0x1457004  > $DCC_PATH/config
     echo 0x1457008  > $DCC_PATH/config
@@ -753,22 +688,8 @@ config_khaje_dcc_gcc()
     echo 0x147A000  > $DCC_PATH/config
     echo 0x147A004  > $DCC_PATH/config
     echo 0x147A00C  > $DCC_PATH/config
-    echo 0x147B000  > $DCC_PATH/config
-    echo 0x147B004  > $DCC_PATH/config
-    echo 0x147B00C  > $DCC_PATH/config
     echo 0x1480018  > $DCC_PATH/config
-    echo 0x1480028  > $DCC_PATH/config
-    echo 0x148005C  > $DCC_PATH/config
     echo 0x1480144  > $DCC_PATH/config
-    echo 0x1480154  > $DCC_PATH/config
-    echo 0x14801B8  > $DCC_PATH/config
-    echo 0x14801C0  > $DCC_PATH/config
-    echo 0x14801C8  > $DCC_PATH/config
-    echo 0x14801D0  > $DCC_PATH/config
-    echo 0x1480250  > $DCC_PATH/config
-    echo 0x1480254  > $DCC_PATH/config
-    echo 0x1480258  > $DCC_PATH/config
-    echo 0x1480270  > $DCC_PATH/config
     echo 0x1481144  > $DCC_PATH/config
     echo 0x148B004  > $DCC_PATH/config
     echo 0x1490004  > $DCC_PATH/config
@@ -776,7 +697,6 @@ config_khaje_dcc_gcc()
     echo 0x1490024  > $DCC_PATH/config
     echo 0x1490028  > $DCC_PATH/config
     echo 0x149002C  > $DCC_PATH/config
-    echo 0x1490030  > $DCC_PATH/config
     echo 0x1490034  > $DCC_PATH/config
     echo 0x1495000  > $DCC_PATH/config
     echo 0x1495004  > $DCC_PATH/config
