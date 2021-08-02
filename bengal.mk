@@ -19,6 +19,9 @@ BOARD_DYNAMIC_PARTITION_ENABLE ?= true
 SHIPPING_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
 
+BOARD_SHIPPING_API_LEVEL := 30
+BOARD_API_LEVEL := 30
+
 # For QSSI builds, we should skip building the system image. Instead we build the
 # "non-system" images (that we support).
 
@@ -37,9 +40,6 @@ PRODUCT_BUILD_RAMDISK_IMAGE := true
 PRODUCT_BUILD_USERDATA_IMAGE := true
 
 TARGET_SKIP_OTA_PACKAGE := true
-ifeq ($(ENABLE_AB), true)
-TARGET_SKIP_OTATOOLS_PACKAGE := true
-endif
 
 #BUILD_BROKEN_PHONY_TARGETS := true
 BUILD_BROKEN_DUP_RULES := true
@@ -97,6 +97,9 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Enable incremental FS feature
 PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.soc.manufacturer=QTI
 
 # privapp-permissions whitelisting (To Fix CTS :privappPermissionsMustBeEnforced)
 PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
