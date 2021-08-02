@@ -38,6 +38,7 @@ source $HERE/init.qti.debug-trinket.sh
 source $HERE/init.qti.debug-atoll.sh
 source $HERE/init.qti.debug-lagoon.sh
 source $HERE/init.qti.debug-bengal.sh
+source $HERE/init.qti.debug-khaje.sh
 
 enable_tracing_events()
 {
@@ -2589,6 +2590,10 @@ case "$coresight_config" in
                 if [ "$soc_id" == "473" || "$soc_id" == "474" ]; then
                     echo "Enabling DCC/STM/Debug events for scuba"
                     enable_scuba_debug
+                    setprop ro.dbg.coresight.stm_cfg_done 1
+                elif [ "$soc_id" == "518" ]; then
+                    echo "Enabling DCC/STM/Debug events for khaje"
+                    enable_khaje_debug
                     setprop ro.dbg.coresight.stm_cfg_done 1
                 else
                     echo "Enabling DCC/STM/Debug events for bengal"

@@ -340,12 +340,6 @@ endif
 IPROUTE2 := ip
 IPROUTE2 += libiprouteutil
 
-#IPACM
-ifneq ($(TARGET_HAS_LOW_RAM),true)
-IPACM += ipacm
-IPACM += IPACM_cfg.xml
-IPACM += ipacm-diag
-endif
 
 #IPTABLES
 IPTABLES := libiptc
@@ -998,7 +992,6 @@ PRODUCT_PACKAGES += $(VT_QTI_PERMISSIONS)
 PRODUCT_PACKAGES += $(IMS_SETTINGS)
 PRODUCT_PACKAGES += $(CRDA)
 PRODUCT_PACKAGES += $(WLAN)
-PRODUCT_PACKAGES += $(IPACM)
 PRODUCT_PACKAGES += $(FSTMAN)
 PRODUCT_PACKAGES += $(FD_LEAK)
 PRODUCT_PACKAGES += $(IMS_EXT)
@@ -1225,7 +1218,8 @@ PRODUCT_PACKAGES_DEBUG += \
     init.qti.debug-trinket.sh \
     init.qti.debug-atoll.sh \
     init.qti.debug-lagoon.sh \
-    init.qti.debug-bengal.sh
+    init.qti.debug-bengal.sh \
+    init.qti.debug-khaje.sh
 
 PRODUCT_PACKAGES += liboemaids_system
 PRODUCT_PACKAGES += liboemaids_vendor
