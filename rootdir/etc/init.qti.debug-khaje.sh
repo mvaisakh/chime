@@ -1166,8 +1166,34 @@ config_khaje_dcc_core()
     echo 0x0F0980B4 1 > $DCC_PATH/config
     echo 0x0F0A80B4 1 > $DCC_PATH/config
     echo 0x0F0B80B4 1 > $DCC_PATH/config
+
     #first core hung
     echo 0x0F1D1228 1 > $DCC_PATH/config
+
+    # Core hang threshold
+    echo 0x0F1880B0 1 > $DCC_PATH/config
+    echo 0x0F1980B0 1 > $DCC_PATH/config
+    echo 0x0F1A80B0 1 > $DCC_PATH/config
+    echo 0x0F1B80B0 1 > $DCC_PATH/config
+    echo 0x0F0880B0 1 > $DCC_PATH/config
+    echo 0x0F0980B0 1 > $DCC_PATH/config
+    echo 0x0F0A80B0 1 > $DCC_PATH/config
+    echo 0x0F0B80B0 1 > $DCC_PATH/config
+
+    # Core hang config
+    echo 0x0F1880B8 1 > $DCC_PATH/config
+    echo 0x0F1980B8 1 > $DCC_PATH/config
+    echo 0x0F1A80B8 1 > $DCC_PATH/config
+    echo 0x0F1B80B8 1 > $DCC_PATH/config
+    echo 0x0F0880B8 1 > $DCC_PATH/config
+    echo 0x0F0980B8 1 > $DCC_PATH/config
+    echo 0x0F0A80B8 1 > $DCC_PATH/config
+    echo 0x0F0B80B8 1 > $DCC_PATH/config
+
+    echo 0x0F1D160C 1 > $DCC_PATH/config
+    echo 0x0F1D120C 1 > $DCC_PATH/config
+    echo 0x0F1D1434 1 > $DCC_PATH/config
+    echo 0x0F1D141C 6 > $DCC_PATH/config
 }
 
 config_khaje_dcc_cam()
@@ -1176,6 +1202,22 @@ config_khaje_dcc_cam()
     echo 0x5C42000 > $DCC_PATH/config
     echo 0x5C42400 > $DCC_PATH/config
     echo 0x5C23000 > $DCC_PATH/config
+}
+
+#Adding watchdog,gic and gladiator hang registers
+config_khaje_dcc_wdog()
+{
+    echo 0x0F1D143C 1 > $DCC_PATH/config
+    echo 0x0F1D1404 1 > $DCC_PATH/config
+    echo 0x0F1D1440 1 > $DCC_PATH/config
+    echo 0x0F1D160C 1 > $DCC_PATH/config
+    echo 0x0F1D1438 1 > $DCC_PATH/config
+}
+
+# Added APM status register
+config_khaje_apm()
+{
+    echo 0x0F500000 1 > $DCC_PATH/config
 }
 
 # Function to send ASYNC package in TPDA
@@ -1215,6 +1257,8 @@ enable_khaje_dcc_config()
     config_modem_rscc
     config_cdsp_rscc
     config_khaje_dcc_cam
+    config_khaje_dcc_wdog
+    config_khaje_apm
 
     #configure sink for LL3 as atb
     echo 1 > /sys/bus/coresight/devices/coresight-tpdm-dcc/enable_source
