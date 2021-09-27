@@ -243,6 +243,7 @@ config_khaje_dcc_bimc()
     echo 0x450209c 1 > $DCC_PATH/config
     echo 0x45020c4 2 > $DCC_PATH/config
     echo 0x45023dc 1 > $DCC_PATH/config
+    echo 0x450249C 1 > $DCC_PATH/config
     echo 0x45025d8 1 > $DCC_PATH/config
 
     #CH0_DQ1_DDRPHY
@@ -251,6 +252,7 @@ config_khaje_dcc_bimc()
     echo 0x450309c 1 > $DCC_PATH/config
     echo 0x45030c4 2 > $DCC_PATH/config
     echo 0x45033dc 1 > $DCC_PATH/config
+    echo 0x450349C 1 > $DCC_PATH/config
     echo 0x45035d8 1 > $DCC_PATH/config
 
     #CH0_DQ2_DDRPHY
@@ -259,6 +261,7 @@ config_khaje_dcc_bimc()
     echo 0x450409c 1 > $DCC_PATH/config
     echo 0x45040c8 2 > $DCC_PATH/config
     echo 0x45043dc 1 > $DCC_PATH/config
+    echo 0x450449C 1 > $DCC_PATH/config
     echo 0x45045d8 1 > $DCC_PATH/config
 
     #CH0_DQ3_DDRPHY
@@ -267,6 +270,7 @@ config_khaje_dcc_bimc()
     echo 0x450509c 1 > $DCC_PATH/config
     echo 0x45050c4 2 > $DCC_PATH/config
     echo 0x45053dc 1 > $DCC_PATH/config
+    echo 0x450549C 1 > $DCC_PATH/config
     echo 0x45055d8 1 > $DCC_PATH/config
 
 }
