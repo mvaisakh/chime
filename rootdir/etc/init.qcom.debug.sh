@@ -164,7 +164,13 @@ enable_sdm632_stm_events()
         return
     fi
 
-    echo 0x2000000 > /sys/bus/coresight/devices/coresight-tmc-etr/mem_size
+    if [ -e /sys/bus/coresight/devices/coresight-tmc-etr/mem_size ]
+    then
+        echo 0x2000000 > /sys/bus/coresight/devices/coresight-tmc-etr/mem_size
+    else
+        echo 0x2000000 > /sys/bus/coresight/devices/coresight-tmc-etr/buffer_size
+    fi
+
     echo 4096 > /sys/kernel/debug/tracing/buffer_size_kb
     echo 1 > /sys/bus/coresight/devices/coresight-tmc-etr/$sinkenable
     echo 1 > /sys/bus/coresight/devices/coresight-stm/$srcenable
