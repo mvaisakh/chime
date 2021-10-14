@@ -1238,6 +1238,29 @@ config_khaje_apm()
     echo 0x0F500000 1 > $DCC_PATH/config
 }
 
+# Added lmh register
+config_khaje_lmh()
+{
+    echo 0xF55903C 1 > $DCC_PATH/config
+    echo 0xF559814 1 > $DCC_PATH/config
+    echo 0xF521700 1 > $DCC_PATH/config
+    echo 0xF521704 1 > $DCC_PATH/config
+    echo 0xF52172C  1 > $DCC_PATH/config
+}
+
+# Added Tsens register
+config_khaje_tsens()
+{
+    echo 0x4410004 1 > $DCC_PATH/config
+    echo 0x4411014 1 > $DCC_PATH/config
+    echo 0x44110E0 1 > $DCC_PATH/config
+    echo 0x44110EC 1 > $DCC_PATH/config
+    echo 0x44110A0 16 > $DCC_PATH/config
+    echo 0x44110E8 1 > $DCC_PATH/config
+    echo 0x441113C 1 > $DCC_PATH/config
+    echo 0x4410010 1 > $DCC_PATH/config
+
+}
 # Function to send ASYNC package in TPDA
 dcc_async_package()
 {
@@ -1277,6 +1300,8 @@ enable_khaje_dcc_config()
     config_khaje_dcc_cam
     config_khaje_dcc_wdog
     config_khaje_apm
+    config_khaje_lmh
+    config_khaje_tsens
 
     #configure sink for LL3 as atb
     echo 1 > /sys/bus/coresight/devices/coresight-tpdm-dcc/enable_source
