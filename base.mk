@@ -623,6 +623,19 @@ LIBPOWER += android.hardware.power@1.0-impl
 LIBPOWER += android.hardware.power@1.0-service
 endif
 
+# Light AIDL Soong configs
+ifeq ($(PLATFORM_VERSION), $(filter $(PLATFORM_VERSION),R 11))
+  SOONG_CONFIG_NAMESPACES += lights
+  SOONG_CONFIG_lights += lighttargets
+  SOONG_CONFIG_lights_lighttargets := lightaidltarget
+endif
+
+ifeq ($(PLATFORM_VERSION), $(filter $(PLATFORM_VERSION),S 12))
+  SOONG_CONFIG_NAMESPACES += lights
+  SOONG_CONFIG_lights += lighttargets
+  SOONG_CONFIG_lights_lighttargets := lightaidlV1target
+endif
+
 #LLVM for RenderScript
 #use qcom LLVM
 $(call inherit-product-if-exists, external/llvm/llvm-select.mk)
