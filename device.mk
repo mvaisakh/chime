@@ -17,6 +17,16 @@ $(call inherit-product, vendor/xiaomi/chime/chime-vendor.mk)
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
 
+# Platform
+PRODUCT_BOARD_PLATFORM := bengal
+PRODUCT_USES_QCOM_HARDWARE := true
+
+# Kernel
+TARGET_KERNEL_DIR ?= device/xiaomi/chime-kernel
+LOCAL_KERNEL := $(TARGET_KERNEL_DIR)/Image
+
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
@@ -312,6 +322,8 @@ PRODUCT_PACKAGES += \
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
+PRODUCT_PACKAGES += \
+    fastbootd
 
 # Perf
 PRODUCT_PACKAGES += \
@@ -468,8 +480,7 @@ PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
 
 # USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti
+$(call inherit-product, vendor/qcom/opensource/usb/vendor_product.mk)
 
 PRODUCT_PACKAGES += \
     init.qcom.usb.rc \

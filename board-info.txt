@@ -1,0 +1,1 @@
+require board=citrus || lime || lemon || pomelo || chime || juice
