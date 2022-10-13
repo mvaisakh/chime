@@ -18,50 +18,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
 
+# Audio
 PRODUCT_PACKAGES += \
     audio.primary.bengal \
     libqahw \
-    libqahwwrapper
-
-#AMPLOADER
-PRODUCT_PACKAGES += \
+    libqahwwrapper \
     amploader
 
 #BRCTL
 PRODUCT_PACKAGES += \
-    brctl \
-    libbridge
-
-#BSON
-PRODUCT_PACKAGES += \
-    libbson
-
-#C2DColorConvert
-PRODUCT_PACKAGES += \
-    libc2dcolorconvert
-
-#CIMAX
-PRODUCT_PACKAGES += \
-    libcimax_spi
-
-#CONNECTIVITY
-PRODUCT_PACKAGES += \
-    libcnefeatureconfig \
-    services-ext
-
-#DATA_OS
-PRODUCT_PACKAGES += \
-    librmnetctl
+    brctl
 
 #EBTABLES
 PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
-
-#HDMID
-PRODUCT_PACKAGES += \
-    hdmid
 
 #HOSTAPD
 PRODUCT_PACKAGES += \
@@ -70,10 +42,6 @@ PRODUCT_PACKAGES += \
     nt_password_hash \
     hlr_auc_gw \
     hostapd_default.conf
-
-#I420COLORCONVERT
-PRODUCT_PACKAGES += \
-    libI420colorconvert
 
 # Init
 PRODUCT_PACKAGES += \
@@ -99,23 +67,6 @@ PRODUCT_PACKAGES += \
     fstab.qti \
     init.qcom.sensors.sh
 
-# iproute2
-PRODUCT_PACKAGES += \
-    ip \
-    libiprouteutil
-
-# iptables
-PRODUCT_PACKAGES += \
-    libiptc \
-    libext \
-    iptables
-
-#KS
-PRODUCT_PACKAGES += \
-    ks \
-    qcks \
-    efsks
-
 # LIB_NL
 PRODUCT_PACKAGES += \
     libnl_2
@@ -123,21 +74,6 @@ PRODUCT_PACKAGES += \
 # LIB_XML2
 PRODUCT_PACKAGES += \
     libxml2
-
-#LIBGRALLOC
-PRODUCT_PACKAGES += \
-    gralloc.default \
-    gralloc.bengal \
-    libmemalloc
-
-# Memtrack
-PRODUCT_PACKAGES += \
-    memtrack.default \
-    memtrack.bengal
-
-# HWComposer
-PRODUCT_PACKAGES += \
-    hwcomposer.bengal
 
 # LibAudioParam -- Exposing AudioParameter as dynamic library for SRS TruMedia to work
 PRODUCT_PACKAGES += \
@@ -180,100 +116,19 @@ PRODUCT_PACKAGES += \
 #use qcom LLVM
 $(call inherit-product-if-exists, external/llvm/llvm-select.mk)
 
-#LOC_API
-LOC_API := libloc_api-rpc-qc
-
-#MM_AUDIO
-PRODUCT_PACKAGES += \
-    libOmxAacDec \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxEvrcEnc \
-    libOmxMp3Dec \
-    libOmxQcelp13Enc \
-    libOmxAc3HwDec
-
-# mm-core
-PRODUCT_PACKAGES += \
-    libmm-omxcore \
-    libOmxCore
-
 #WFD
 PRODUCT_PACKAGES += \
     libwfdaac \
     libwfdaac_vendor
 
-# MM_VIDEO
-PRODUCT_PACKAGES += \
-    liblasic \
-    libOmxVdec \
-    libOmxVdecHevc \
-    libOmxVenc \
-    libOmxVidEnc \
-    libOmxSwVdec \
-    libOmxSwVencMpeg4 \
-    libstagefrighthw \
-    libaacwrapper
-
-# OPENCORE
-PRODUCT_PACKAGES += \
-    libomx_aacdec_sharedlibrary \
-    libomx_avcdec_sharedlibrary \
-    libomx_m4vdec_sharedlibrary \
-    libomx_mp3dec_sharedlibrary \
-    libopencore_author \
-    libopencore_common \
-    libopencore_download \
-    libopencore_downloadreg \
-    libopencore_mp4local \
-    libopencore_mp4localreg \
-    libopencore_net_support \
-    libopencore_player \
-    libopencore_rtsp \
-    libopencore_rtspreg \
-    libpvplayer_engine \
-    libpvauthorengine \
-    pvplayer
-
-#PPP
-PRODUCT_PACKAGES += \
-    ip-up-vpn
-
+# Protobuf
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full
-
-#PVOMX
-PRODUCT_PACKAGES += \
-    libqcomm_omx \
-    01_qcomm_omx
-
-#RF4CE
-PRODUCT_PACKAGES += \
-    RemoTI_RNP.cfg \
-    rf4ce
-
-#SOFTAP
-PRODUCT_PACKAGES += \
-    libQWiFiSoftApCfg \
-    libqsap_sdk
-
-#WPA
-PRODUCT_PACKAGES += \
-    wpa_supplicant.conf \
-    wpa_cli \
-    wpa_supplicant_wcn.conf \
-    wpa_supplicant
 
 #Charger
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
-
-#VT_JNI
-PRODUCT_PACKAGES += \
-    libvt_jni \
-    libimscamera_jni \
-    qti_permissions.xml
 
 #RCS
 PRODUCT_PACKAGES += \
@@ -282,6 +137,7 @@ PRODUCT_PACKAGES += \
     rcs_service_aidl_static \
     rcs_service_api \
     rcs_service_api.xml
+
 
 #IMS
 PRODUCT_PACKAGES += \
@@ -292,7 +148,8 @@ PRODUCT_PACKAGES += \
     qti-telephony-hidl-wrapper \
     qti_telephony_hidl_wrapper.xml \
     qti-telephony-utils \
-    qti_telephony_utils.xml
+    qti_telephony_utils.xml \
+    qti_permissions.xml
 
 #CRDA
 PRODUCT_PACKAGES += \
@@ -357,8 +214,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     device/xiaomi/sm6115-common/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
-PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
-
 #copy codecs_xxx.xml to (TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
@@ -367,8 +222,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
-    device/xiaomi/sm6115-common/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
@@ -397,7 +251,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     vendor.usb.diag.func.name=diag
 
 TARGET_FS_CONFIG_GEN := device/xiaomi/sm6115-common/configs/config.fs
-
 
 PRODUCT_PROPERTY_OVERRIDES += \
         persist.vendor.qcomsysd.enabled=1
@@ -575,7 +428,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     wifilearner \
     dppdaemon \
-    wpa_cli
+    wpa_supplicant.conf \
+    wpa_cli \
+    wpa_supplicant_wcn.conf \
+    wpa_supplicant
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.aware.interface=wifi-aware0
