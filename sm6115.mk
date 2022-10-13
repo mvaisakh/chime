@@ -1,3 +1,9 @@
+#
+# Copyright (C) 2013-2022, The Linux Foundation
+# Copyright (C) 2022 StatiXOS
+#
+# SPDX-License-Identifer: Apache-2.0
+
 $(call inherit-product, build/make/target/product/gsi_keys.mk)
 
 #ANGLE
