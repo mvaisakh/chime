@@ -1067,7 +1067,7 @@ endif
 
 # gps/location secuity configuration file
 PRODUCT_COPY_FILES += \
-    device/qcom/common/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+    device/xiaomi/sm6115/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 #copy codecs_xxx.xml to (TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_COPY_FILES += \
@@ -1078,12 +1078,12 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
-    device/qcom/common/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
+    device/xiaomi/sm6115/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
 
 ifneq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS),true)
 PRODUCT_COPY_FILES += \
-    device/qcom/common/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-    device/qcom/common/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
+    device/xiaomi/sm6115/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    device/xiaomi/sm6115/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 endif
 
 ifeq ($(strip $(TARGET_USES_NQ_NFC)),true)
@@ -1101,7 +1101,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 # include additional build utilities
--include device/qcom/common/utils.mk
+-include device/xiaomi/sm6115/utils.mk
 
 # Copy the vulkan feature level file.
 # Targets listed in VULKAN_FEATURE_LEVEL_0_TARGETS_LIST supports only vulkan feature level 0.
@@ -1125,14 +1125,14 @@ endif
 
 ifneq ($(strip $(TARGET_BUILD_VARIANT)),user)
 PRODUCT_COPY_FILES += \
-    device/qcom/common/rootdir/etc/init.qcom.testscripts.sh:$(TARGET_COPY_OUT_PRODUCT)/etc/init.qcom.testscripts.sh
+    device/xiaomi/sm6115/rootdir/etc/init.qcom.testscripts.sh:$(TARGET_COPY_OUT_PRODUCT)/etc/init.qcom.testscripts.sh
 endif
 
 ifneq ($(strip $(TARGET_USES_RRO)),true)
 # enable overlays to use our version of
 # source/resources etc.
-DEVICE_PACKAGE_OVERLAYS += device/qcom/common/device/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/product/overlay
+DEVICE_PACKAGE_OVERLAYS += device/xiaomi/sm6115/device/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/xiaomi/sm6115/product/overlay
 endif
 
 # Set up flags to determine the kernel version
@@ -1194,7 +1194,7 @@ PRODUCT_PACKAGES += \
 # have been removed, TARGET_FS_CONFIG_GEN should be made unconditional.
 DEVICE_CONFIG_DIR := $(dir $(firstword $(subst ]],, $(word 2, $(subst [[, ,$(_node_import_context))))))
 ifeq ($(wildcard $(DEVICE_CONFIG_DIR)/android_filesystem_config.h),)
-  TARGET_FS_CONFIG_GEN := device/qcom/common/configs/config.fs
+  TARGET_FS_CONFIG_GEN := device/xiaomi/sm6115/configs/config.fs
 else
   $(warning **********)
   $(warning TODO: Need to replace legacy $(DEVICE_CONFIG_DIR)android_filesystem_config.h with config.fs)
@@ -1251,7 +1251,7 @@ else
 SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := aosp
 endif
 
-$(call inherit-product, device/qcom/common/base.mk)
+$(call inherit-product, device/xiaomi/sm6115/base.mk)
 
 # For PRODUCT_COPY_FILES, the first instance takes precedence.
 # Since we want use QC specific files, we should inherit
@@ -1295,10 +1295,10 @@ endif
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
-    device/qcom/common/configs/permissions/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+    device/xiaomi/sm6115/configs/permissions/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 PRODUCT_COPY_FILES += \
-    device/qcom/common/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
+    device/xiaomi/sm6115/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
 
 ifneq ($(TARGET_BOARD_AUTO),true)
 #copy telephony app's permissions
@@ -1310,7 +1310,7 @@ endif
 # Permission for Wi-Fi passpoint support
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
 
-PRODUCT_PRIVATE_KEY := device/qcom/common/qcom.key
+PRODUCT_PRIVATE_KEY := device/xiaomi/sm6115/qcom.key
 
 ifneq ($(TARGET_DEFINES_DALVIK_HEAP), true)
 ifneq ($(TARGET_HAS_LOW_RAM), true)
@@ -1507,10 +1507,10 @@ PRODUCT_PACKAGES += \
   update_engine_sideload
 
 endif
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/bengal/configs/vintf/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115/configs/vintf/framework_manifest.xml
 
-DEVICE_MANIFEST_FILE := device/qcom/bengal/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE   := device/qcom/common/configs/vintf/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE := device/xiaomi/sm6115/configs/vintf/manifest.xml
+DEVICE_MATRIX_FILE   := device/xiaomi/sm6115/configs/vintf/compatibility_matrix.xml
 
 # Kernel modules install path
 KERNEL_MODULES_INSTALL := dlkm

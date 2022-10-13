@@ -73,10 +73,10 @@ ifeq ($(ENABLE_AB), true)
        BOARD_SUPER_PARTITION_SIZE := 8589934592
    endif
 
-   TARGET_RECOVERY_FSTAB := device/qcom/bengal/recovery_AB_dynamic_partition.fstab
+   TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115/recovery_AB_dynamic_partition.fstab
 else
    BOARD_SUPER_PARTITION_SIZE := 4294967296
-   TARGET_RECOVERY_FSTAB := device/qcom/bengal/recovery_non-AB_dynamic_partition.fstab
+   TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115/recovery_non-AB_dynamic_partition.fstab
 endif
 ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
    # Enable DTBO for recovery image
