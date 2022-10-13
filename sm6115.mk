@@ -71,6 +71,9 @@ PRODUCT_PACKAGES += \
     fstab.qti \
     init.qcom.sensors.sh
 
+# Media
+$(call inherit-product, hardware/qcom-caf/sm8250/media/conf_files/bengal/bengal.mk)
+
 # LIB_NL
 PRODUCT_PACKAGES += \
     libnl_2
