@@ -184,10 +184,10 @@ PRODUCT_PACKAGES += \
   update_engine_sideload
 
 endif
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/bengal/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/bengal/configs/vintf/framework_manifest.xml
 
-DEVICE_MANIFEST_FILE := device/qcom/bengal/manifest.xml
-DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE := device/qcom/bengal/configs/vintf/manifest.xml
+DEVICE_MATRIX_FILE   := device/qcom/common/configs/vintf/compatibility_matrix.xml
 
 # Kernel modules install path
 KERNEL_MODULES_INSTALL := dlkm
