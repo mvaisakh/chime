@@ -1,115 +1,4 @@
-# define flag to determine the kernel
-TARGET_KERNEL_VERSION ?= $(shell ls kernel | grep "msm-*" | sed 's/msm-//')
-
-# Set TARGET_USES_NEW_ION for 4.14 and higher kernels
-ifeq ($(TARGET_KERNEL_VERSION),$(filter $(TARGET_KERNEL_VERSION),3.18 4.4 4.9))
-TARGET_USES_NEW_ION := false
-else
-TARGET_USES_NEW_ION := true
-endif
-
-# Board platforms lists to be used for
-# TARGET_BOARD_PLATFORM specific featurization
-QCOM_BOARD_PLATFORMS += msm8974
-QCOM_BOARD_PLATFORMS += msm8610
-QCOM_BOARD_PLATFORMS += msm8226
-QCOM_BOARD_PLATFORMS += apq8084
-QCOM_BOARD_PLATFORMS += mpq8092
-QCOM_BOARD_PLATFORMS += msm_bronze
-QCOM_BOARD_PLATFORMS += msm8916
-QCOM_BOARD_PLATFORMS += msm8916_32
-QCOM_BOARD_PLATFORMS += msm8916_32_512
-QCOM_BOARD_PLATFORMS += msm8916_64
-QCOM_BOARD_PLATFORMS += msm8994
-QCOM_BOARD_PLATFORMS += msm8909
-QCOM_BOARD_PLATFORMS += msm8909_512
-QCOM_BOARD_PLATFORMS += msm8992
-QCOM_BOARD_PLATFORMS += msm8996
-QCOM_BOARD_PLATFORMS += msm8952
-QCOM_BOARD_PLATFORMS += msm8937
-QCOM_BOARD_PLATFORMS += msm8953
-QCOM_BOARD_PLATFORMS += msm8998
-QCOM_BOARD_PLATFORMS += apq8098_latv
-QCOM_BOARD_PLATFORMS += sdm660
-QCOM_BOARD_PLATFORMS += sdm845
-QCOM_BOARD_PLATFORMS += msmnile
-QCOM_BOARD_PLATFORMS += sdmshrike
-QCOM_BOARD_PLATFORMS += sdm710
-QCOM_BOARD_PLATFORMS += msmnile_au
-QCOM_BOARD_PLATFORMS += msmnile_tb
-QCOM_BOARD_PLATFORMS += qcs605
-QCOM_BOARD_PLATFORMS += $(MSMSTEPPE)
-QCOM_BOARD_PLATFORMS += kona
-QCOM_BOARD_PLATFORMS += lito
-QCOM_BOARD_PLATFORMS += atoll
-QCOM_BOARD_PLATFORMS += $(TRINKET)
-
-QSD8K_BOARD_PLATFORMS := qsd8k
-
-TARGET_USE_VENDOR_CAMERA_EXT := true
-
-# Boot additions
-ifeq ($(strip $(TARGET_USES_NQ_NFC)),true)
-PRODUCT_BOOT_JARS += com.nxp.nfc.nq
-endif
-#Camera QC extends API
-#ifeq ($(strip $(TARGET_USES_QTIC_EXTENSION)),true)
-#PRODUCT_BOOT_JARS += com.qualcomm.qti.camera
-#endif
-
-#skip boot jars check
-SKIP_BOOT_JARS_CHECK := true
-
-
-#Enable suspend during charger mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
-
-#List of targets that use video hw
-MSM_VIDC_TARGET_LIST := msm8974 msm8610 msm8226 apq8084 msm8916 msm8994 msm8909 msm8992 msm8996 msm8952 msm8937 msm8953 msm8998 apq8098_latv sdm660 sdm845 sdm710 qcs605 msmnile sdmshrike $(MSMSTEPPE) kona $(TRINKET)
-
-#List of targets that use master side content protection
-MASTER_SIDE_CP_TARGET_LIST := msm8996 msm8998 sdm660 sdm845 apq8098_latv sdm710 qcs605 msmnile sdmshrike $(MSMSTEPPE) $(TRINKET) lito kona atoll
-
-#List of targets where Vulkan feature level is restricted to 0
-VULKAN_FEATURE_LEVEL_0_TARGETS_LIST := msm8937_32 msm8937_64 sdm660_32 sdm660_64 msm8998 msm8998_32 msm8996 msm8953_64 msm8953_32
-
-# Below projects/packages with LOCAL_MODULEs will be used by
-# PRODUCT_PACKAGES to build LOCAL_MODULEs that are tagged with
-# optional tag, which will not be available on target unless
-# explicitly list here. Where project corresponds to the vars here
-# in CAPs.
-
-#ALSA
-ALSA_HARDWARE := alsa.msm8960
-ALSA_HARDWARE += alsa.msm8974
-ALSA_HARDWARE += alsa.msm8226
-ALSA_HARDWARE += alsa.msm8610
-ALSA_HARDWARE += alsa.apq8084
-
-ALSA_UCM := snd_soc_msm
-ALSA_UCM += snd_soc_msm_2x
-ALSA_UCM += snd_soc_msm_2x_mpq
-ALSA_UCM += snd_soc_msm_2x_Fusion3
-ALSA_UCM += snd_soc_msm_Sitar
-ALSA_UCM += snd_soc_msm_auxpcm
-ALSA_UCM += snd_soc_msm_2x_auxpcm
-ALSA_UCM += snd_soc_msm_2x_mpq_auxpcm
-ALSA_UCM += snd_soc_msm_2x_Fusion3_auxpcm
-ALSA_UCM += snd_soc_msm_Sitar_auxpcm
-ALSA_UCM += snd_soc_msm_Taiko
-ALSA_UCM += snd_soc_msm_Taiko_CDP
-ALSA_UCM += snd_soc_msm_Taiko_Fluid
-ALSA_UCM += snd_soc_msm_Taiko_liquid
-ALSA_UCM += snd_soc_apq_Taiko_DB
-ALSA_UCM += snd_soc_msm_I2SFusion
-ALSA_UCM += snd_soc_msm_Tapan
-ALSA_UCM += snd_soc_msm_TapanLite
-ALSA_UCM += snd_soc_msm_Tapan_SKUF
-ALSA_UCM += snd_soc_msm_TapanLite_SKUF
-ALSA_UCM += snd_soc_msm_8x10_wcd
-ALSA_UCM += snd_soc_msm_8x10_wcd_skuab
-ALSA_UCM += snd_soc_msm_8x10_wcd_skuaa
-ALSA_UCM += snd_soc_msm_samarium_Tapan
+$(call inherit-product, build/make/target/product/gsi_keys.mk)
 
 #ANGLE
 ANGLE := libangle
@@ -120,90 +9,15 @@ APPOPS_POLICY := appops_policy.xml
 #ATRACE_HAL
 ATRACE_HAL := android.hardware.atrace@1.0-service
 
-AUDIO_HARDWARE := audio.primary.mpq8064
-AUDIO_HARDWARE += audio.primary.apq8084
-AUDIO_HARDWARE += audio.primary.msm8960
-AUDIO_HARDWARE += audio.primary.msm8974
-AUDIO_HARDWARE += audio.primary.msm8226
-AUDIO_HARDWARE += audio.primary.msm8660
-AUDIO_HARDWARE += audio.primary.msm8610
-#AUDIO_HARDWARE += audio.primary.msm7627_surf
-AUDIO_HARDWARE += audio.primary.msm7627a
-AUDIO_HARDWARE += audio.primary.msm7630_surf
-AUDIO_HARDWARE += audio.primary.msm7630_fusion
-#AUDIO_HARDWARE += audio.primary.default
-AUDIO_HARDWARE += audio.a2dp.default
-AUDIO_HARDWARE += audio.usb.default
-AUDIO_HARDWARE += audio.r_submix.default
-AUDIO_HARDWARE += audio.primary.mpq8092
-AUDIO_HARDWARE += audio.primary.msm8916
-AUDIO_HARDWARE += audio.primary.msm8909
-AUDIO_HARDWARE += audio.primary.msm8994
-AUDIO_HARDWARE += audio.primary.msm8992
-AUDIO_HARDWARE += audio.primary.msm8996
-AUDIO_HARDWARE += audio.primary.msm8952
-AUDIO_HARDWARE += audio.primary.msm8937
-AUDIO_HARDWARE += audio.primary.msm8953
-AUDIO_HARDWARE += audio.primary.msmgold
-AUDIO_HARDWARE += audio.primary.msm8998
-AUDIO_HARDWARE += audio.primary.sdm660
-AUDIO_HARDWARE += audio.primary.sdm845
-AUDIO_HARDWARE += audio.primary.apq8098_latv
-AUDIO_HARDWARE += audio.primary.sdm710
-AUDIO_HARDWARE += audio.primary.qcs605
-AUDIO_HARDWARE += audio.primary.msmnile
-AUDIO_HARDWARE += audio.primary.sdmshrike
-AUDIO_HARDWARE += audio.primary.$(MSMSTEPPE)
-AUDIO_HARDWARE += audio.primary.kona
-AUDIO_HARDWARE += audio.primary.lito
-AUDIO_HARDWARE += audio.primary.$(TRINKET)
-#
-AUDIO_POLICY := audio_policy.mpq8064
-AUDIO_POLICY += audio_policy.apq8084
-AUDIO_POLICY += audio_policy.msm8960
-AUDIO_POLICY += audio_policy.msm8974
-AUDIO_POLICY += audio_policy.msm8226
-AUDIO_POLICY += audio_policy.msm8660
-AUDIO_POLICY += audio_policy.msm8610
-AUDIO_POLICY += audio_policy.mpq8092
-#AUDIO_POLICY += audio_policy.msm7627_surf
-AUDIO_POLICY += audio_policy.msm7627a
-AUDIO_POLICY += audio_policy.msm7630_surf
-AUDIO_POLICY += audio_policy.msm7630_fusion
-#AUDIO_POLICY += audio_policy.default
-AUDIO_POLICY += audio_policy.conf
-AUDIO_POLICY += audio_policy_8064.conf
-AUDIO_POLICY += audio_policy.msm8916
-AUDIO_POLICY += audio_policy.msm8909
-AUDIO_POLICY += audio_policy.msm8994
-AUDIO_POLICY += audio_policy.msm8992
-AUDIO_POLICY += audio_policy.msm8996
-AUDIO_POLICY += audio_policy.msm8952
-AUDIO_POLICY += audio_policy.msm8937
-AUDIO_POLICY += audio_policy.msm8953
-AUDIO_POLICY += audio_policy.msmgold
+
+AUDIO_HARDWARE += audio.primary.bengal
 
 #HAL Wrapper
 AUDIO_WRAPPER := libqahw
 AUDIO_WRAPPER += libqahwwrapper
 
-#HAL Test app
-AUDIO_HAL_TEST_APPS := hal_play_test
-AUDIO_HAL_TEST_APPS += hal_rec_test
-
-#tinyalsa test apps
-TINY_ALSA_TEST_APPS := tinyplay
-TINY_ALSA_TEST_APPS += tinycap
-TINY_ALSA_TEST_APPS += tinymix
-TINY_ALSA_TEST_APPS += tinypcminfo
-TINY_ALSA_TEST_APPS += cplay
-
 #AMPLOADER
 AMPLOADER := amploader
-
-#APPS
-APPS := QualcommSoftAP
-APPS += TSCalibration
 
 #BRCTL
 BRCTL := brctl
@@ -215,18 +29,8 @@ BSON := libbson
 #C2DColorConvert
 C2DCC := libc2dcolorconvert
 
-CHROMIUM := libwebviewchromium
-CHROMIUM += libwebviewchromium_loader
-CHROMIUM += libwebviewchromium_plat_support
-
 #CIMAX
 CIMAX := libcimax_spi
-
-ifneq ($(TARGET_HAS_LOW_RAM),true)
-#CM
-CM :=CMFileManager
-#CM += Trebuchet
-endif
 
 #CONNECTIVITY
 CONNECTIVITY := libcnefeatureconfig
@@ -252,16 +56,10 @@ EXTENDEDMEDIA_EXT += ExtendedMediaPlayer
 #DATA_OS
 DATA_OS := librmnetctl
 
-#E2FSPROGS
-E2FSPROGS := e2fsck
-
 #EBTABLES
 EBTABLES := ebtables
 EBTABLES += ethertypes
 EBTABLES += libebtc
-
-#FASTPOWERON
-FASTPOWERON := FastBoot
 
 #HDMID
 HDMID := hdmid
@@ -315,9 +113,7 @@ INIT += init.mdm.sh
 INIT += fstab.qcom
 INIT += fstab.qti
 INIT += fstab.default
-INIT += fstab.emmc
 INIT += init.qcom.sensors.sh
-INIT += init.qcom.crashdata.sh
 INIT += init.qcom.vendor.rc
 INIT += init.target.vendor.rc
 INIT += init.veth_ipa_config.sh
@@ -332,43 +128,6 @@ IPTABLES := libiptc
 IPTABLES += libext
 IPTABLES += iptables
 
-#KERNEL_TESTS
-KERNEL_TESTS := mm-audio-native-test
-
-#KEYPAD
-KEYPAD := ffa-keypad_qwerty.kcm
-KEYPAD += ffa-keypad_numeric.kcm
-KEYPAD += fluid-keypad_qwerty.kcm
-KEYPAD += fluid-keypad_numeric.kcm
-KEYPAD += surf_keypad_qwerty.kcm
-KEYPAD += surf_keypad_numeric.kcm
-KEYPAD += surf_keypad.kcm
-KEYPAD += 7k_ffa_keypad.kcm
-KEYPAD += 7x27a_kp.kcm
-KEYPAD += keypad_8960_qwerty.kcm
-KEYPAD += 7k_ffa_keypad.kl
-KEYPAD += 7k_handset.kl
-KEYPAD += 7x27a_kp.kl
-KEYPAD += 8660_handset.kl
-KEYPAD += atmel_mxt_ts.kl
-KEYPAD += synaptics_rmi4_i2c.kl
-KEYPAD += synaptics_dsx.kl
-KEYPAD += synaptics_dsxv26.kl
-KEYPAD += cyttsp-i2c.kl
-KEYPAD += ft5x06_ts.kl
-KEYPAD += ffa-keypad.kl
-KEYPAD += fluid-keypad.kl
-KEYPAD += gpio-keys.kl
-KEYPAD += qpnp_pon.kl
-KEYPAD += keypad_8960.kl
-KEYPAD += keypad_8960_liquid.kl
-KEYPAD += synaptics_rmi4_i2c.kl
-KEYPAD += msm_tma300_ts.kl
-KEYPAD += philips_remote_ir.kl
-KEYPAD += samsung_remote_ir.kl
-KEYPAD += surf_keypad.kl
-KEYPAD += ue_rf4ce_remote.kl
-
 #KS
 KS := ks
 KS += qcks
@@ -380,201 +139,17 @@ LIB_NL := libnl_2
 #LIB_XML2
 LIB_XML2 := libxml2
 
-#LIBCAMERA
-LIBCAMERA := camera.apq8084
-LIBCAMERA += camera.msm8974
-LIBCAMERA += camera.msm8226
-LIBCAMERA += camera.msm8610
-LIBCAMERA += camera.msm8960
-LIBCAMERA += camera.msm8660
-LIBCAMERA += camera.msm7630_surf
-LIBCAMERA += camera.msm7630_fusion
-LIBCAMERA += camera.msm7627a
-LIBCAMERA += camera.msm8909
-LIBCAMERA += camera.msm8916
-LIBCAMERA += camera.msm8994
-LIBCAMERA += camera.msm8992
-LIBCAMERA += camera.msm8996
-LIBCAMERA += camera.msm8998
-LIBCAMERA += camera.apq8098_latv
-LIBCAMERA += camera.sdm660
-LIBCAMERA += camera.msm8952
-LIBCAMERA += camera.msm8937
-LIBCAMERA += camera.msm8953
-LIBCAMERA += camera.$(TRINKET)
-LIBCAMERA += libcamera
-LIBCAMERA += libmmcamera_interface
-LIBCAMERA += libmmcamera_interface2
-LIBCAMERA += libmmjpeg_interface
-LIBCAMERA += libmmlib2d_interface
-LIBCAMERA += libqomx_core
-LIBCAMERA += mm-qcamera-app
-LIBCAMERA += camera_test
-LIBCAMERA += org.codeaurora.camera
-
-#LIBCOPYBIT
-LIBCOPYBIT := copybit.msm8660
-LIBCOPYBIT += copybit.msm8960
-LIBCOPYBIT += copybit.msm8974
-LIBCOPYBIT += copybit.msm8226
-LIBCOPYBIT += copybit.msm8610
-LIBCOPYBIT += copybit.msm8909
-LIBCOPYBIT += copybit.msm8916
-LIBCOPYBIT += copybit.msm8994
-LIBCOPYBIT += copybit.msm8992
-LIBCOPYBIT += copybit.apq8084
-LIBCOPYBIT += copybit.msm7k
-LIBCOPYBIT += copybit.qsd8k
-LIBCOPYBIT += copybit.msm7630_surf
-LIBCOPYBIT += copybit.msm7630_fusion
-LIBCOPYBIT += copybit.msm7627_surf
-LIBCOPYBIT += copybit.msm7627_6x
-LIBCOPYBIT += copybit.msm7627a
-LIBCOPYBIT += copybit.msm8996
-LIBCOPYBIT += copybit.msm8952
-LIBCOPYBIT += copybit.msm8937
-LIBCOPYBIT += copybit.msm8953
-LIBCOPYBIT += copybit.msm8998
-LIBCOPYBIT += copybit.sdm630
-LIBCOPYBIT += copybit.sdm660
-LIBCOPYBIT += copybit.sda630
-LIBCOPYBIT += copybit.apq8098_latv
-LIBCOPYBIT += copybit.sdm710
-LIBCOPYBIT += copybit.qcs605
-
-#LIBGESTURES
-LIBGESTURES := libgestures
-LIBGESTURES += gestures.msm8960
-
 #LIBGRALLOC
 LIBGRALLOC := gralloc.default
-LIBGRALLOC += gralloc.msm8660
-LIBGRALLOC += gralloc.msm8960
-LIBGRALLOC += gralloc.msm8974
-LIBGRALLOC += gralloc.msm8226
-LIBGRALLOC += gralloc.msm8610
-LIBGRALLOC += gralloc.msm8909
-LIBGRALLOC += gralloc.msm8916
-LIBGRALLOC += gralloc.msm8994
-LIBGRALLOC += gralloc.msm8992
-LIBGRALLOC += gralloc.apq8084
-LIBGRALLOC += gralloc.mpq8092
-LIBGRALLOC += gralloc.msm7k
-LIBGRALLOC += gralloc.msm7630_surf
-LIBGRALLOC += gralloc.msm7630_fusion
-LIBGRALLOC += gralloc.msm7627_surf
-LIBGRALLOC += gralloc.msm7627_6x
-LIBGRALLOC += gralloc.msm7627a
-LIBGRALLOC += gralloc.msm8996
-LIBGRALLOC += gralloc.msm8952
-LIBGRALLOC += gralloc.msm8937
-LIBGRALLOC += gralloc.msm8953
-LIBGRALLOC += gralloc.msm8998
-LIBGRALLOC += gralloc.msmnile
-LIBGRALLOC += gralloc.sdmshrike
-LIBGRALLOC += gralloc.kona
-LIBGRALLOC += gralloc.sdm845
-LIBGRALLOC += gralloc.apq8098_latv
 LIBGRALLOC += libmemalloc
-LIBGRALLOC += gralloc.sdm630
-LIBGRALLOC += gralloc.sdm660
-LIBGRALLOC += gralloc.sdm710
-LIBGRALLOC += gralloc.qcs605
-LIBGRALLOC += gralloc.$(MSMSTEPPE)
-LIBGRALLOC += gralloc.$(TRINKET)
+LIBGRALLOC += gralloc.bengal
 
 #memtrack
 LIBMEMTRACK := memtrack.default
-LIBMEMTRACK += memtrack.msm8974
-LIBMEMTRACK += memtrack.msm8226
-LIBMEMTRACK += memtrack.msm8909
-LIBMEMTRACK += memtrack.msm8916
-LIBMEMTRACK += memtrack.msm8994
-LIBMEMTRACK += memtrack.msm8610
-LIBMEMTRACK += memtrack.apq8084
-LIBMEMTRACK += memtrack.mpq8092
-LIBMEMTRACK += memtrack.msm8996
-LIBMEMTRACK += memtrack.msm8952
-LIBMEMTRACK += memtrack.msm8937
-LIBMEMTRACK += memtrack.msm8953
-LIBMEMTRACK += memtrack.msm8998
-LIBMEMTRACK += memtrack.msmnile
-LIBMEMTRACK += memtrack.sdmshrike
-LIBMEMTRACK += memtrack.kona
-LIBMEMTRACK += memtrack.sdm660
-LIBMEMTRACK += memtrack.sdm845
-LIBMEMTRACK += memtrack.apq8098_latv
-LIBMEMTRACK += memtrack.sdm710
-LIBMEMTRACK += memtrack.qcs605
-LIBMEMTRACK += memtrack.$(MSMSTEPPE)
-LIBMEMTRACK += memtrack.$(TRINKET)
-
-#LIBLIGHTS
-LIBLIGHTS := lights.msm8660
-LIBLIGHTS += lights.msm8960
-LIBLIGHTS += lights.msm8974
-LIBLIGHTS += lights.msm8226
-LIBLIGHTS += lights.msm8909
-LIBLIGHTS += lights.msm8916
-LIBLIGHTS += lights.msm8994
-LIBLIGHTS += lights.msm8992
-LIBLIGHTS += lights.msm7k
-LIBLIGHTS += lights.msm7630_surf
-LIBLIGHTS += lights.msm7630_fusion
-LIBLIGHTS += lights.msm7627_surf
-LIBLIGHTS += lights.msm7627_6x
-LIBLIGHTS += lights.msm7627a
-LIBLIGHTS += lights.msm8610
-LIBLIGHTS += lights.apq8084
-LIBLIGHTS += lights.msm8996
-LIBLIGHTS += lights.msm8952
-LIBLIGHTS += lights.msm8937
-LIBLIGHTS += lights.msm8953
-LIBLIGHTS += lights.msm8998
-LIBLIGHTS += lights.msmnile
-LIBLIGHTS += lights.sdmshrike
-LIBLIGHTS += lights.kona
-LIBLIGHTS += lights.sdm660
-LIBLIGHTS += lights.sdm845
-LIBLIGHTS += lights.apq8098_latv
-LIBLIGHTS += lights.sdm710
-LIBLIGHTS += lights.qcs605
-LIBLIGHTS += lights.$(MSMSTEPPE)
-LIBLIGHTS += lights.$(TRINKET)
+LIBMEMTRACK += memtrack.bengal
 
 #LIBHWCOMPOSER
-LIBHWCOMPOSER := hwcomposer.msm8660
-LIBHWCOMPOSER += hwcomposer.msm8960
-LIBHWCOMPOSER += hwcomposer.msm8974
-LIBHWCOMPOSER += hwcomposer.msm8226
-LIBHWCOMPOSER += hwcomposer.msm8610
-LIBHWCOMPOSER += hwcomposer.msm8909
-LIBHWCOMPOSER += hwcomposer.msm8916
-LIBHWCOMPOSER += hwcomposer.msm8994
-LIBHWCOMPOSER += hwcomposer.msm8992
-LIBHWCOMPOSER += hwcomposer.apq8084
-LIBHWCOMPOSER += hwcomposer.mpq8092
-LIBHWCOMPOSER += hwcomposer.msm7k
-LIBHWCOMPOSER += hwcomposer.msm7630_surf
-LIBHWCOMPOSER += hwcomposer.msm7630_fusion
-LIBHWCOMPOSER += hwcomposer.msm7627_surf
-LIBHWCOMPOSER += hwcomposer.msm7627_6x
-LIBHWCOMPOSER += hwcomposer.msm7627a
-LIBHWCOMPOSER += hwcomposer.msm8996
-LIBHWCOMPOSER += hwcomposer.msm8952
-LIBHWCOMPOSER += hwcomposer.msm8937
-LIBHWCOMPOSER += hwcomposer.msm8953
-LIBHWCOMPOSER += hwcomposer.msm8998
-LIBHWCOMPOSER += hwcomposer.msmnile
-LIBHWCOMPOSER += hwcomposer.sdmshrike
-LIBHWCOMPOSER += hwcomposer.kona
-LIBHWCOMPOSER += hwcomposer.sdm660
-LIBHWCOMPOSER += hwcomposer.sdm845
-LIBHWCOMPOSER += hwcomposer.apq8098_latv
-LIBHWCOMPOSER += hwcomposer.sdm710
-LIBHWCOMPOSER += hwcomposer.qcs605
-LIBHWCOMPOSER += hwcomposer.$(MSMSTEPPE)
-LIBHWCOMPOSER += hwcomposer.$(TRINKET)
+LIBHWCOMPOSER += hwcomposer.bengal
 
 #LIBAUDIOPARAM -- Exposing AudioParameter as dynamic library for SRS TruMedia to work
 LIBAUDIOPARAM := libaudioparameter
@@ -604,36 +179,12 @@ LIBQDUTILS := libqdutils
 #LIBQDMETADATA
 LIBQDMETADATA := libqdMetaData
 
-#LIBPOWER
-ifneq ($(TARGET_USES_NON_LEGACY_POWERHAL), true)
-LIBPOWER := power.qcom
-#LIBPOWER -- Add HIDL Packages
-LIBPOWER += android.hardware.power@1.0-impl
-LIBPOWER += android.hardware.power@1.0-service
-endif
-
-# Light AIDL Soong configs
-ifeq ($(PLATFORM_VERSION), $(filter $(PLATFORM_VERSION),R 11))
-  SOONG_CONFIG_NAMESPACES += lights
-  SOONG_CONFIG_lights += lighttargets
-  SOONG_CONFIG_lights_lighttargets := lightaidltarget
-endif
-
-ifeq ($(PLATFORM_VERSION), $(filter $(PLATFORM_VERSION),S 12))
-  SOONG_CONFIG_NAMESPACES += lights
-  SOONG_CONFIG_lights += lighttargets
-  SOONG_CONFIG_lights_lighttargets := lightaidlV1target
-endif
-
 #LLVM for RenderScript
 #use qcom LLVM
 $(call inherit-product-if-exists, external/llvm/llvm-select.mk)
 
 #LOC_API
 LOC_API := libloc_api-rpc-qc
-
-#MEDIA_PROFILES
-MEDIA_PROFILES := media_profiles.xml
 
 #MM_AUDIO
 MM_AUDIO := libOmxAacDec
@@ -651,7 +202,6 @@ MM_CORE += libOmxCore
 #WFD
 MM_WFD := libwfdaac
 MM_WFD := libwfdaac_vendor
-
 
 #MM_VIDEO
 MM_VIDEO := ast-mm-vdec-omx-test
@@ -749,16 +299,6 @@ STK := Stk
 #STM LOG
 STMLOG := libstm-log
 
-#THERMAL_HAL
-THERMAL_HAL := thermal.msm8998
-THERMAL_HAL += thermal.sdm845
-THERMAL_HAL += thermal.sdm710
-THERMAL_HAL += thermal.qcs605
-THERMAL_HAL += thermal.sdm660
-THERMAL_HAL += thermal.msm8996
-THERMAL_HAL += thermal.msm8953
-THERMAL_HAL += thermal.msm8937
-
 #TSLIB_EXTERNAL
 TSLIB_EXTERNAL := corgi
 TSLIB_EXTERNAL += dejitter
@@ -814,23 +354,16 @@ RCS += rcs_service_api
 RCS += rcs_service_api.xml
 
 #IMS SETTINGS
-ifeq ($(TARGET_FWK_SUPPORTS_FULL_VALUEADDS), true)
 IMS_SETTINGS := imssettings
-endif
 
 #IMS Extension module for Android Telephony
 IMS_EXT := ims-ext-common
 IMS_EXT += ims_ext_common.xml
-
-ifneq ($(TARGET_NO_TELEPHONY), true)
 IMS_EXT += ConfURIDialer
-
 HIDL_WRAPPER := qti-telephony-hidl-wrapper
 HIDL_WRAPPER += qti_telephony_hidl_wrapper.xml
-
 QTI_TELEPHONY_UTILS := qti-telephony-utils
 QTI_TELEPHONY_UTILS += qti_telephony_utils.xml
-endif # TARGET_NO_TELEPHONY
 
 #CRDA
 CRDA := crda
@@ -851,92 +384,29 @@ FSTMAN += fstman.ini
 #FD_LEAK
 FD_LEAK := libc_leak_detector
 
-ifneq ($(TARGET_HAS_LOW_RAM),true)
-ifneq ($(TARGET_SUPPORTS_ANDROID_WEAR),true)
-TELEPHONY_DBG := NrNetworkSettingApp
-endif
-endif
+#servicetracker HAL
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.servicetracker@1.2-impl \
+    vendor.qti.hardware.servicetracker@1.2-service
 
-PRODUCT_PACKAGES := \
-    AccountAndSyncSettings \
-    DeskClock \
-    AlarmProvider \
-    Calculator \
-    Calendar \
-    Camera \
-    CellBroadcastReceiver \
-    CertInstaller \
-    DrmProvider \
-    Email \
-    Gallery2 \
-    LatinIME \
-    Music \
-    netutils-wrapper-1.0 \
-    Phone \
-    Provision \
-    Protips \
-    QuickSearchBox \
-    Settings \
-    Sync \
-    SystemUI \
-    Updater \
-    CalendarProvider \
-    SyncProvider \
-    SoundRecorder \
-    IM \
-    VoiceDialer \
-    SnapdragonGallery \
-    SnapdragonMusic \
-    VideoEditor \
-    SnapdragonLauncher \
-    QtiDialer
-
-ifeq ($(TARGET_HAS_LOW_RAM),true)
-    DELAUN := Launcher3QuickStepGo
-else
-    # Live Wallpapers
-    PRODUCT_PACKAGES += \
-            LiveWallpapers \
-            LiveWallpapersPicker \
-            VisualizationWallpapers
-
-    DELAUN := Launcher3
-
-    #servicetracker HAL
-    PRODUCT_PACKAGES += \
-            vendor.qti.hardware.servicetracker@1.2-impl \
-            vendor.qti.hardware.servicetracker@1.2-service
-endif
-
-PRODUCT_PACKAGES += $(ALSA_HARDWARE)
-PRODUCT_PACKAGES += $(ALSA_UCM)
 PRODUCT_PACKAGES += $(ANGLE)
 PRODUCT_PACKAGES += $(APPOPS_POLICY)
 PRODUCT_PACKAGES += $(ATRACE_HAL)
 PRODUCT_PACKAGES += $(AUDIO_HARDWARE)
-PRODUCT_PACKAGES += $(AUDIO_POLICY)
 PRODUCT_PACKAGES += $(AUDIO_WRAPPER)
-PRODUCT_PACKAGES += $(AUDIO_HAL_TEST_APPS)
-PRODUCT_PACKAGES += $(TINY_ALSA_TEST_APPS)
 PRODUCT_PACKAGES += $(AMPLOADER)
-PRODUCT_PACKAGES += $(APPS)
 PRODUCT_PACKAGES += $(BRCTL)
 PRODUCT_PACKAGES += $(BSON)
 PRODUCT_PACKAGES += $(C2DCC)
-PRODUCT_PACKAGES += $(CHROMIUM)
 PRODUCT_PACKAGES += $(CIMAX)
-PRODUCT_PACKAGES += $(CM)
-PRODUCT_PACKAGES += $(DELAUN)
 PRODUCT_PACKAGES += $(RCS)
 PRODUCT_PACKAGES += $(CONNECTIVITY)
 PRODUCT_PACKAGES += $(CHARGER)
 PRODUCT_PACKAGES += $(CURL)
 PRODUCT_PACKAGES += $(DASH)
 PRODUCT_PACKAGES += $(DATA_OS)
-PRODUCT_PACKAGES += $(E2FSPROGS)
 PRODUCT_PACKAGES += $(EBTABLES)
 PRODUCT_PACKAGES += $(EXTENDEDMEDIA_EXT)
-PRODUCT_PACKAGES += $(FASTPOWERON)
 PRODUCT_PACKAGES += $(HDMID)
 PRODUCT_PACKAGES += $(HOSTAPD)
 PRODUCT_PACKAGES += $(HIDL_WRAPPER)
@@ -944,7 +414,6 @@ PRODUCT_PACKAGES += $(I420CC)
 PRODUCT_PACKAGES += $(INIT)
 PRODUCT_PACKAGES += $(IPROUTE2)
 PRODUCT_PACKAGES += $(IPTABLES)
-PRODUCT_PACKAGES += $(KERNEL_TESTS)
 PRODUCT_PACKAGES += $(KEYPAD)
 PRODUCT_PACKAGES += $(KS)
 PRODUCT_PACKAGES += $(LIB_NL)
@@ -972,9 +441,7 @@ PRODUCT_PACKAGES += $(MM_AUDIO)
 PRODUCT_PACKAGES += $(MM_CORE)
 PRODUCT_PACKAGES += $(MM_WFD)
 PRODUCT_PACKAGES += $(MM_VIDEO)
-ifeq ($(strip $(TARGET_USES_NQ_NFC)),true)
 PRODUCT_PACKAGES += $(NQ_NFC)
-endif
 PRODUCT_PACKAGES += $(OPENCORE)
 PRODUCT_PACKAGES += $(PPP)
 PRODUCT_PACKAGES += $(PROTOBUF)
@@ -1014,9 +481,6 @@ PRODUCT_PACKAGES += \
 # Qcril configuration file
 PRODUCT_PACKAGES += qcril.db
 
-# MSM updater library
-PRODUCT_PACKAGES += librecovery_updater_msm
-
 # vcard jar
 PRODUCT_PACKAGES += vcard
 
@@ -1025,17 +489,6 @@ PRODUCT_PACKAGES += tcmiface
 
 # healthd libaray expanded for mode charger
 PRODUCT_PACKAGES += libhealthd.msm
-
-#intialise PRODUCT_PACKAGES_DEBUG list for debug modules
-PRODUCT_PACKAGES_DEBUG := init.qcom.testscripts.sh
-
-#Add init.qcom.test.rc to PRODUCT_PACKAGES_DEBUG list
-PRODUCT_PACKAGES_DEBUG += init.qcom.test.rc
-PRODUCT_PACKAGES_DEBUG += init.qcom.debug.sh
-
-#NANOPB_LIBRARY_NAME := libnanopb-c-2.8.0
-
-PRODUCT_PACKAGES_DEBUG += $(TELEPHONY_DBG)
 
 PRODUCT_COPY_FILES := \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -1051,23 +504,16 @@ PRODUCT_COPY_FILES := \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
-    frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml
-
-ifneq ($(TARGET_NO_TELEPHONY), true)
-PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml
-endif # TARGET_NO_TELEPHONY
 
-# Enable TDES support when KM4 is enabled
-ifeq ($(ENABLE_KM_4_0), true)
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.hardware.keystore_desede=true
-endif
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore_desede=true
 
 # gps/location secuity configuration file
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+    device/xiaomi/sm6115/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 #copy codecs_xxx.xml to (TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_COPY_FILES += \
@@ -1078,114 +524,33 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
-    device/xiaomi/sm6115/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
+    device/xiaomi/sm6115/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml
 
-ifneq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS),true)
-PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-    device/xiaomi/sm6115/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
-endif
-
-ifeq ($(strip $(TARGET_USES_NQ_NFC)),true)
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hcef.xml
-endif
 
-ifneq ($(TARGET_NOT_SUPPORT_VULKAN),true)
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute-0.xml
-endif
 
-# include additional build utilities
--include device/xiaomi/sm6115/utils.mk
-
-# Copy the vulkan feature level file.
-# Targets listed in VULKAN_FEATURE_LEVEL_0_TARGETS_LIST supports only vulkan feature level 0.
-ifneq ($(TARGET_NOT_SUPPORT_VULKAN),true)
-ifeq ($(call is-product-in-list,$(VULKAN_FEATURE_LEVEL_0_TARGETS_LIST)), true)
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-0.xml
-else
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-1.xml
-endif
-endif
 
-ifneq ($(TARGET_NOT_SUPPORT_VULKAN),true)
-ifeq ($(TARGET_SUPPORT_VULKAN_VERSION_1_1),false)
-PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_0_3.xml
-else
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml
-endif
-endif
 
-ifneq ($(strip $(TARGET_BUILD_VARIANT)),user)
-PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/rootdir/etc/init.qcom.testscripts.sh:$(TARGET_COPY_OUT_PRODUCT)/etc/init.qcom.testscripts.sh
-endif
 
-ifneq ($(strip $(TARGET_USES_RRO)),true)
-# enable overlays to use our version of
-# source/resources etc.
 DEVICE_PACKAGE_OVERLAYS += device/xiaomi/sm6115/device/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/xiaomi/sm6115/product/overlay
-endif
 
-# Set up flags to determine the kernel version
-ifeq ($(TARGET_KERNEL_VERSION),)
-     TARGET_KERNEL_VERSION := 3.18
-endif
-ifneq ($(KERNEL_OVERRIDE),)
-     TARGET_KERNEL_VERSION := $(KERNEL_OVERRIDE)
-endif
-ifeq ($(wildcard kernel/msm-$(TARGET_KERNEL_VERSION)),)
-     KERNEL_TO_BUILD_ROOT_OFFSET := ../
-     TARGET_KERNEL_SOURCE := kernel
-else
-     KERNEL_TO_BUILD_ROOT_OFFSET := ../../
-     TARGET_KERNEL_SOURCE := kernel/msm-$(TARGET_KERNEL_VERSION)
-endif
+TARGET_KERNEL_VERSION := 4.19
 
-#Enabling Ring Tones
-#include frameworks/base/data/sounds/OriginalAudio.mk
+PRODUCT_PROPERTY_OVERRIDES += persist.radio.multisim.config=dsds
 
-#Enabling video for live effects
--include frameworks/base/data/videos/VideoPackage1.mk
-
-# dm-verity definitions
-ifneq ($(BOARD_AVB_ENABLE), true)
-   PRODUCT_SYSTEM_VERITY_PARTITION=/dev/block/bootdevice/by-name/system
-   ifeq ($(ENABLE_VENDOR_IMAGE), true)
-      PRODUCT_VENDOR_VERITY_PARTITION=/dev/block/bootdevice/by-name/vendor
-   endif
-   $(call inherit-product, build/target/product/verity.mk)
-endif
-
-ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES+= \
-    ro.adb.secure=1
-endif
-
-# OEM Unlock reporting
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.oem_unlock_supported=1
-
-ifeq ($(TARGET_USES_QCOM_BSP_ATEL),true)
-    PRODUCT_PROPERTY_OVERRIDES += persist.radio.multisim.config=dsds
-endif
-
-ifeq ( ,$(filter 12 S ,$(PLATFORM_VERSION)))
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     vendor.usb.diag.func.name=diag
-endif
-
-# VNDK-SP:
-PRODUCT_PACKAGES += \
-    vndk-sp \
 
 TARGET_FS_CONFIG_GEN := device/xiaomi/sm6115/configs/config.fs
 
@@ -1196,23 +561,6 @@ else
     PRODUCT_PROPERTY_OVERRIDES += \
         persist.vendor.qcomsysd.enabled=1
 endif
-
-PRODUCT_PACKAGES_DEBUG += \
-    init.qcom.debug.sh \
-    init.qcom.debug-sdm660.sh \
-    init.qcom.debug-sdm710.sh \
-    init.qti.debug-msmnile-apps.sh \
-    init.qti.debug-msmnile-modem.sh \
-    init.qti.debug-msmnile-slpi.sh \
-    init.qti.debug-talos.sh \
-    init.qti.debug-msmnile.sh \
-    init.qti.debug-kona.sh \
-    init.qti.debug-lito.sh \
-    init.qti.debug-trinket.sh \
-    init.qti.debug-atoll.sh \
-    init.qti.debug-lagoon.sh \
-    init.qti.debug-bengal.sh \
-    init.qti.debug-khaje.sh
 
 PRODUCT_PACKAGES += liboemaids_system
 PRODUCT_PACKAGES += liboemaids_vendor
@@ -1226,33 +574,6 @@ PRODUCT_PACKAGES += libqti_vndfwk_detect.vendor
 # vndservicemanager
 PRODUCT_PACKAGES += vndservicemanager
 
-#soong namespace for qssi vs vendor differentiation
-SOONG_CONFIG_NAMESPACES += qssi_vs_vendor
-SOONG_CONFIG_qssi_vs_vendor += qssi_or_vendor
-SOONG_CONFIG_qssi_vs_vendor_qssi_or_vendor := vendor
-
-SOONG_CONFIG_NAMESPACES += aosp_vs_qva
-SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
-ifeq ($(TARGET_FWK_SUPPORTS_FULL_VALUEADDS),true)
-SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
-else
-SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := aosp
-endif
-
-$(call inherit-product, device/xiaomi/sm6115/base.mk)
-
-# For PRODUCT_COPY_FILES, the first instance takes precedence.
-# Since we want use QC specific files, we should inherit
-# device-vendor.mk first to make sure QC specific files gets installed.
-$(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-ifeq ($(TARGET_BOARD_AUTO), true)
-  $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-else
-  $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-endif
-
-
 PRODUCT_BRAND := qcom
 PRODUCT_AAPT_CONFIG += hdpi mdpi
 
@@ -1264,22 +585,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     sys.vendor.shutdown.waittime=500
 
 
-ifneq ($(TARGET_BOARD_AUTO), true)
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.sib16_support=1 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.rat_on=combine \
     persist.vendor.radio.procedure_bytes=SKIP
-endif
-
-ifneq ($(ENABLE_HYP),true)
-ifneq ($(BOARD_FRP_PARTITION_NAME),)
-    PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/bootdevice/by-name/$(BOARD_FRP_PARTITION_NAME)
-else
-    PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/bootdevice/by-name/config
-endif
-endif
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
@@ -1288,123 +599,32 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/xiaomi/sm6115/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
 
-ifneq ($(TARGET_BOARD_AUTO),true)
-#copy telephony app's permissions
-PRODUCT_COPY_FILES += $(QCPATH)/commonsys/telephony-build/build/telephony_product_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/telephony_product_privapp-permissions-qti.xml
-
-PRODUCT_COPY_FILES += $(QCPATH)/commonsys/telephony-build/build/telephony_system-ext_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
-endif
-
 # Permission for Wi-Fi passpoint support
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
 
 PRODUCT_PRIVATE_KEY := device/xiaomi/sm6115/qcom.key
 
-ifneq ($(TARGET_DEFINES_DALVIK_HEAP), true)
-ifneq ($(TARGET_HAS_LOW_RAM), true)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-endif
-endif
-
-#$(call inherit-product, frameworks/base/data/fonts/fonts.mk)
-#$(call inherit-product, frameworks/base/data/keyboards/keyboards.mk)
-
-# Enable AVB 2.0
-BOARD_AVB_ENABLE := true
-
-# Enable Virtual A/B
-ENABLE_VIRTUAL_AB := true
-
-ifeq ($(ENABLE_VIRTUAL_AB), true)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-endif
-
-# Default A/B configuration
-ENABLE_AB ?= true
-
-SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
-
-# Enable Dynamic partition
-BOARD_DYNAMIC_PARTITION_ENABLE ?= true
-
-SHIPPING_API_LEVEL := 30
+SHIPPING_API_LEVEL := 29
 PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
+BOARD_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
+BOARD_API_LEVEL := $(SHIPPING_API_LEVEL)
 
-BOARD_SHIPPING_API_LEVEL := 30
-BOARD_API_LEVEL := 30
-
-# For QSSI builds, we should skip building the system image. Instead we build the
-# "non-system" images (that we support).
-
-PRODUCT_BUILD_SYSTEM_IMAGE := false
-PRODUCT_BUILD_SYSTEM_OTHER_IMAGE := false
-PRODUCT_BUILD_VENDOR_IMAGE := true
-PRODUCT_BUILD_PRODUCT_IMAGE := false
-PRODUCT_BUILD_PRODUCT_SERVICES_IMAGE := false
-PRODUCT_BUILD_ODM_IMAGE := false
-ifeq ($(ENABLE_AB), true)
-PRODUCT_BUILD_CACHE_IMAGE := false
-else
-PRODUCT_BUILD_CACHE_IMAGE := true
-endif
-PRODUCT_BUILD_RAMDISK_IMAGE := true
-PRODUCT_BUILD_USERDATA_IMAGE := true
-
-TARGET_SKIP_OTA_PACKAGE := true
-
-#BUILD_BROKEN_PHONY_TARGETS := true
-BUILD_BROKEN_DUP_RULES := true
-TEMPORARY_DISABLE_PATH_RESTRICTIONS := true
-#export TEMPORARY_DISABLE_PATH_RESTRICTIONS
-
-ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
-# Enable chain partition for system, to facilitate system-only OTA in Treble.
-BOARD_AVB_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_SYSTEM_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_SYSTEM_ROLLBACK_INDEX := 0
-BOARD_AVB_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
-else
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_PACKAGES += fastbootd
+
 # Add default implementation of fastboot HAL.
 PRODUCT_PACKAGES += android.hardware.fastboot@1.0-impl-mock
-# f2fs utilities
-PRODUCT_PACKAGES += \
- sg_write_buffer \
- f2fs_io \
- check_f2fs
 
 # Userdata checkpoint
 PRODUCT_PACKAGES += \
  checkpoint_gc
 
-ifeq ($(ENABLE_AB), true)
-# Userdata checkpoint start
-AB_OTA_POSTINSTALL_CONFIG += \
-RUN_POSTINSTALL_vendor=true \
-POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-FILESYSTEM_TYPE_vendor=ext4 \
-POSTINSTALL_OPTIONAL_vendor=true
-# Userdata checkpoint end
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/default/fstab_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.default
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/emmc/fstab_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.emmc
-else
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/default/fstab_non_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.default
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/emmc/fstab_non_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.emmc
-endif
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/rootdir/etc/fstab.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.default
 BOARD_AVB_VBMETA_SYSTEM := system
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
-$(call inherit-product, build/make/target/product/gsi_keys.mk)
-endif
-
-BOARD_HAVE_BLUETOOTH := false
-BOARD_HAVE_QCOM_FM := false
-TARGET_DISABLE_PERF_OPTIMIATIONS := false
-
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Enable incremental FS feature
 PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
@@ -1416,59 +636,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # privapp-permissions whitelisting (To Fix CTS :privappPermissionsMustBeEnforced)
 PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
 
-TARGET_DEFINES_DALVIK_HEAP := true
-
-$(call inherit-product, device/qcom/vendor-common/common64.mk)
-# Temporary bring-up config <--
-
-# Temporary bring-up config -->
-PRODUCT_SUPPORTS_VERITY := false
-# Temporary bring-up config <--
-###########
-PRODUCT_PROPERTY_OVERRIDES  += \
-     dalvik.vm.heapstartsize=8m \
-     dalvik.vm.heapsize=256m \
-     dalvik.vm.heapgrowthlimit=128m \
-     dalvik.vm.heaptargetutilization=0.75 \
-     dalvik.vm.heapminfree=512k \
-     dalvik.vm.heapmaxfree=8m
-# Target naming
-PRODUCT_NAME := bengal
-PRODUCT_DEVICE := bengal
-PRODUCT_BRAND := qti
-PRODUCT_MODEL := Bengal for arm64
-
-
-TARGET_USES_AOSP := false
-TARGET_USES_AOSP_FOR_AUDIO := false
-TARGET_USES_QCOM_BSP := false
-
 # RRO configuration
 TARGET_USES_RRO := true
 
-TARGET_DISABLE_DISPLAY := false
-
-# Kernel configurations
-TARGET_KERNEL_VERSION := 4.19
-#Enable llvm support for kernel
-KERNEL_LLVM_SUPPORT := true
-#Enable sd-llvm support for kernel
-KERNEL_SD_LLVM_SUPPORT := true
-
-###########
-# Target configurations
-
 QCOM_BOARD_PLATFORMS += bengal
-
-TARGET_USES_QSSI := true
-
-#Default vendor image configuration
-ENABLE_VENDOR_IMAGE := true
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
-
-BOARD_FRP_PARTITION_NAME := frp
 
 # Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
@@ -1476,33 +650,6 @@ PRODUCT_PACKAGES += libGLES_android
 PRODUCT_PACKAGES += fs_config_files
 PRODUCT_PACKAGES += gpio-keys.kl
 PRODUCT_PACKAGES += libvolumelistener
-
-ifeq ($(ENABLE_AB), true)
-# A/B related packages
-PRODUCT_PACKAGES += update_engine \
-    update_engine_client \
-    update_verifier \
-    android.hardware.boot@1.1-impl-qti \
-    android.hardware.boot@1.1-impl-qti.recovery \
-    android.hardware.boot@1.1-service
-
-PRODUCT_HOST_PACKAGES += \
-    brillo_update_payload
-# Boot control HAL test app
-PRODUCT_PACKAGES_DEBUG += bootctl
-
-PRODUCT_PACKAGES += \
-  update_engine_sideload
-
-endif
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115/configs/vintf/framework_manifest.xml
-
-DEVICE_MANIFEST_FILE := device/xiaomi/sm6115/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE   := device/xiaomi/sm6115/configs/vintf/compatibility_matrix.xml
-
-# Kernel modules install path
-KERNEL_MODULES_INSTALL := dlkm
-KERNEL_MODULES_OUT := out/target/product/$(PRODUCT_NAME)/$(KERNEL_MODULES_INSTALL)/lib/modules
 
 # MIDI feature
 PRODUCT_COPY_FILES += \
@@ -1523,25 +670,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml
 
-#Enable full treble flag
-PRODUCT_FULL_TREBLE_OVERRIDE := true
-PRODUCT_VENDOR_MOVE_ENABLED := true
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-BOARD_VNDK_VERSION := current
-TARGET_MOUNT_POINTS_SYMLINKS := false
-
 PRODUCT_BOOT_JARS += telephony-ext
 PRODUCT_PACKAGES += telephony-ext
-
-PRODUCT_BOOT_JARS += tcmiface
 
 # Vendor property to enable advanced network scanning
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.enableadvancedscan=true
-
-# Property to disable ZSL mode
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera.disable_zsl_mode=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.crypto.volume.filenames_mode = "aes-256-cts" \
@@ -1554,12 +688,3 @@ PRODUCT_PACKAGES += android.hardware.lights-service.qti
 # wlan specific
 #----------------------------------------------------------------------
 include device/qcom/wlan/bengal/wlan.mk
-
-###################################################################################
-# This is the End of target.mk file.
-# Now, Pickup other split product.mk files:
-###################################################################################
-# TODO: Relocate the system product.mk files pickup into qssi lunch, once it is up.
-$(call inherit-product-if-exists, vendor/qcom/defs/product-defs/system/*.mk)
-$(call inherit-product-if-exists, vendor/qcom/defs/product-defs/vendor/*.mk)
-###################################################################################
