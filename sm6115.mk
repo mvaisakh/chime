@@ -7,181 +7,174 @@
 $(call inherit-product, build/make/target/product/gsi_keys.mk)
 
 #ANGLE
-ANGLE := libangle
+PRODUCT_PACKAGES += \
+    libangle
 
 #APPOPS_POLICY
-APPOPS_POLICY := appops_policy.xml
+PRODUCT_PACKAGES += \
+    appops_policy.xml
 
 #ATRACE_HAL
-ATRACE_HAL := android.hardware.atrace@1.0-service
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service
 
-AUDIO_HARDWARE += audio.primary.bengal
-
-#HAL Wrapper
-AUDIO_WRAPPER := libqahw
-AUDIO_WRAPPER += libqahwwrapper
+PRODUCT_PACKAGES += \
+    audio.primary.bengal \
+    libqahw \
+    libqahwwrapper
 
 #AMPLOADER
-AMPLOADER := amploader
+PRODUCT_PACKAGES += \
+    amploader
 
 #BRCTL
-BRCTL := brctl
-BRTCL += libbridge
+PRODUCT_PACKAGES += \
+    brctl \
+    libbridge
 
 #BSON
-BSON := libbson
+PRODUCT_PACKAGES += \
+    libbson
 
 #C2DColorConvert
-C2DCC := libc2dcolorconvert
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert
 
 #CIMAX
-CIMAX := libcimax_spi
+PRODUCT_PACKAGES += \
+    libcimax_spi
 
 #CONNECTIVITY
-CONNECTIVITY := libcnefeatureconfig
-CONNECTIVITY += services-ext
-
-#CURL
-CURL := libcurl
-CURL += curl
-
-#DASH
-DASH := libdashplayer
-DASH += libqcmediaplayer
-DASH += qcmediaplayer
-DASH += libextmedia_jni
-
-#EXTENDEDMEDIA_EXT
-EXTENDEDMEDIA_EXT := libextendedmediaextractor
-EXTENDEDMEDIA_EXT += libextendedmediaextractor_jni
-EXTENDEDMEDIA_EXT += extendedmediaextractor
-EXTENDEDMEDIA_EXT += ExtendedMediaPlayer
-
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig \
+    services-ext
 
 #DATA_OS
-DATA_OS := librmnetctl
+PRODUCT_PACKAGES += \
+    librmnetctl
 
 #EBTABLES
-EBTABLES := ebtables
-EBTABLES += ethertypes
-EBTABLES += libebtc
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    libebtc
 
 #HDMID
-HDMID := hdmid
+PRODUCT_PACKAGES += \
+    hdmid
 
 #HOSTAPD
-HOSTAPD := hostapd
-HOSTAPD += hostapd_cli
-HOSTAPD += nt_password_hash
-HOSTAPD += hlr_auc_gw
-HOSTAPD += test-milenage
-HOSTAPD += hostapd.conf
-HOSTAPD += hostapd_default.conf
-HOSTAPD += hostapd.deny
-HOSTAPD += hostapd.accept
+PRODUCT_PACKAGES += \
+    hostapd \
+    hostapd_cli \
+    nt_password_hash \
+    hlr_auc_gw \
+    hostapd_default.conf
 
 #I420COLORCONVERT
-I420CC := libI420colorconvert
+PRODUCT_PACKAGES += \
+    libI420colorconvert
 
-#INIT
-INIT := init.qcom.composition_type.sh
-INIT += init.target.8x25.sh
-INIT += init.qcom.mdm_links.sh
-INIT += init.qcom.modem_links.sh
-INIT += init.qcom.sensor.sh
-INIT += init.target.rc
-INIT += init.qti.ims.sh
-INIT += init.qcom.coex.sh
-INIT += init.qcom.early_boot.sh
-INIT += init.qcom.post_boot.sh
-INIT += init.qcom.syspart_fixup.sh
-INIT += init.qcom.rc
-INIT += init.recovery.qcom.rc
-INIT += init.qcom.factory.rc
-INIT += init.qcom.sdio.sh
-INIT += init.qcom.sh
-INIT += init.qcom.class_core.sh
-INIT += init.class_main.sh
-INIT += init.qcom.wifi.sh
-INIT += vold.fstab
-INIT += init.qcom.ril.path.sh
-INIT += init.qcom.usb.rc
-INIT += init.msm.usb.configfs.rc
-INIT += init.qcom.usb.sh
-INIT += usf_post_boot.sh
-INIT += init.qcom.efs.sync.sh
-INIT += ueventd.qcom.rc
-INIT += qca6234-service.sh
-INIT += ssr_setup
-INIT += enable_swap.sh
-INIT += init.mdm.sh
-INIT += fstab.qcom
-INIT += fstab.qti
-INIT += fstab.default
-INIT += init.qcom.sensors.sh
-INIT += init.qcom.vendor.rc
-INIT += init.target.vendor.rc
-INIT += init.veth_ipa_config.sh
+# Init
+PRODUCT_PACKAGES += \
+    init.qcom.sensor.sh \
+    init.crda.sh \
+    init.target.rc \
+    init.qti.ims.sh \
+    init.qcom.coex.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.rc \
+    init.recovery.qcom.rc \
+    init.qcom.factory.rc \
+    init.qcom.sdio.sh \
+    init.qcom.sh \
+    init.qcom.class_core.sh \
+    init.class_main.sh \
+    init.qcom.ril.path.sh \
+    init.qcom.efs.sync.sh \
+    ueventd.qcom.rc \
+    ssr_setup \
+    init.mdm.sh \
+    fstab.qti \
+    init.qcom.sensors.sh
 
-#IPROUTE2
-IPROUTE2 := ip
-IPROUTE2 += libiprouteutil
+# iproute2
+PRODUCT_PACKAGES += \
+    ip \
+    libiprouteutil
 
-#IPTABLES
-IPTABLES := libiptc
-IPTABLES += libext
-IPTABLES += iptables
+# iptables
+PRODUCT_PACKAGES += \
+    libiptc \
+    libext \
+    iptables
 
 #KS
-KS := ks
-KS += qcks
-KS += efsks
+PRODUCT_PACKAGES += \
+    ks \
+    qcks \
+    efsks
 
-#LIB_NL
-LIB_NL := libnl_2
+# LIB_NL
+PRODUCT_PACKAGES += \
+    libnl_2
 
-#LIB_XML2
-LIB_XML2 := libxml2
+# LIB_XML2
+PRODUCT_PACKAGES += \
+    libxml2
 
 #LIBGRALLOC
-LIBGRALLOC := gralloc.default
-LIBGRALLOC += libmemalloc
-LIBGRALLOC += gralloc.bengal
+PRODUCT_PACKAGES += \
+    gralloc.default \
+    gralloc.bengal \
+    libmemalloc
 
-#memtrack
-LIBMEMTRACK := memtrack.default
-LIBMEMTRACK += memtrack.bengal
+# Memtrack
+PRODUCT_PACKAGES += \
+    memtrack.default \
+    memtrack.bengal
 
-#LIBHWCOMPOSER
-LIBHWCOMPOSER += hwcomposer.bengal
+# HWComposer
+PRODUCT_PACKAGES += \
+    hwcomposer.bengal
 
-#LIBAUDIOPARAM -- Exposing AudioParameter as dynamic library for SRS TruMedia to work
-LIBAUDIOPARAM := libaudioparameter
+# LibAudioParam -- Exposing AudioParameter as dynamic library for SRS TruMedia to work
+PRODUCT_PACKAGES += \
+    libaudioparameter
 
-#LIBAUDIORESAMPLER -- High-quality audio resampler
-LIBAUDIORESAMPLER := libaudio-resampler
+# LibAudioResampler -- High-quality audio resampler
+PRODUCT_PACKAGES += \
+    libaudio-resampler
 
-#LIBOPENCOREHW
-LIBOPENCOREHW := libopencorehw
+# LibOpenCoreHW
+PRODUCT_PACKAGES += \
+    libopencorehw
 
 #LIBOVERLAY
-LIBOVERLAY := liboverlay
-LIBOVERLAY += overlay.default
+PRODUCT_PACKAGES += \
+    liboverlay \
+    overlay.default
 
-#LIBGENLOCK
-LIBGENLOCK := libgenlock
+# LibGenLock
+PRODUCT_PACKAGES += \
+    libgenlock
 
-#LIBPERFLOCK
-LIBPERFLOCK := org.codeaurora.Performance
+# LibPerfLock
+PRODUCT_PACKAGES += \
+    org.codeaurora.Performance
 
-#LIBQCOMUI
-LIBQCOMUI := libQcomUI
+# LibQCOMUI
+PRODUCT_PACKAGES += \
+    libQcomUI
 
-#LIBQDUTILS
-LIBQDUTILS := libqdutils
+# LibQDUtils
+PRODUCT_PACKAGES += \
+    libqdutils
 
-#LIBQDMETADATA
-LIBQDMETADATA := libqdMetaData
+# LibQDMetadata
+PRODUCT_PACKAGES += \
+    libqdMetaData
 
 #LLVM for RenderScript
 #use qcom LLVM
@@ -191,296 +184,135 @@ $(call inherit-product-if-exists, external/llvm/llvm-select.mk)
 LOC_API := libloc_api-rpc-qc
 
 #MM_AUDIO
-MM_AUDIO := libOmxAacDec
-MM_AUDIO += libOmxAacEnc
-MM_AUDIO += libOmxAmrEnc
-MM_AUDIO += libOmxEvrcEnc
-MM_AUDIO += libOmxMp3Dec
-MM_AUDIO += libOmxQcelp13Enc
-MM_AUDIO += libOmxAc3HwDec
+PRODUCT_PACKAGES += \
+    libOmxAacDec \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxMp3Dec \
+    libOmxQcelp13Enc \
+    libOmxAc3HwDec
 
-#MM_CORE
-MM_CORE := libmm-omxcore
-MM_CORE += libOmxCore
+# mm-core
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    libOmxCore
 
 #WFD
-MM_WFD := libwfdaac
-MM_WFD := libwfdaac_vendor
+PRODUCT_PACKAGES += \
+    libwfdaac \
+    libwfdaac_vendor
 
-#MM_VIDEO
-MM_VIDEO := ast-mm-vdec-omx-test
-MM_VIDEO += beat
-MM_VIDEO += liblasic
-MM_VIDEO += libOmxVdec
-MM_VIDEO += libOmxVdecHevc
-MM_VIDEO += libOmxVenc
-MM_VIDEO += libOmxVidEnc
-MM_VIDEO += libOmxSwVdec
-MM_VIDEO += libOmxSwVencMpeg4
-MM_VIDEO += libstagefrighthw
-MM_VIDEO += mm-vdec-omx-property-mgr
-MM_VIDEO += mm-vdec-omx-test
-MM_VIDEO += mm-venc-omx-test
-MM_VIDEO += mm-venc-omx-test720p
-MM_VIDEO += mm-video-driver-test
-MM_VIDEO += mm-video-encdrv-test
-MM_VIDEO += ExoplayerDemo
-MM_VIDEO += libaacwrapper
+# MM_VIDEO
+PRODUCT_PACKAGES += \
+    liblasic \
+    libOmxVdec \
+    libOmxVdecHevc \
+    libOmxVenc \
+    libOmxVidEnc \
+    libOmxSwVdec \
+    libOmxSwVencMpeg4 \
+    libstagefrighthw \
+    libaacwrapper
 
-#NQ_NFC
-NQ_NFC := NQNfcNci
-NQ_NFC += libnqnfc-nci
-NQ_NFC += libnqnfc_nci_jni
-NQ_NFC += libsn100nfc_nci_jni
-NQ_NFC += libsn100nfc-nci
-NQ_NFC += nfc_nci.nqx.default
-NQ_NFC += nfc_nci.sn100.default
-NQ_NFC += libp61-jcop-kit
-NQ_NFC += com.nxp.nfc.nq
-NQ_NFC += com.nxp.nfc.nq.xml
-NQ_NFC += com.gsma.services.nfc
-NQ_NFC += libpn547_fw.so
-NQ_NFC += libpn548ad_fw.so
-NQ_NFC += libnfc-brcm.conf
-NQ_NFC += libnfc-brcm_NCI2_0.conf
-NQ_NFC += libnfc-nci.conf
-NQ_NFC += libnfc-nci_NCI2_0.conf
-NQ_NFC += libnfc-nxp_default.conf
-NQ_NFC += nqnfcee_access.xml
-NQ_NFC += nqnfcse_access.xml
-NQ_NFC += Tag
-NQ_NFC += nqnfcinfo
-NQ_NFC += com.android.nfc_extras
-NQ_NFC += vendor.nxp.hardware.nfc@1.1-service
-NQ_NFC += nfc_nci.nqx.default.hw
-NQ_NFC += nfc_nci.sn100.default.hw
-PRODUCT_PROPERTY_OVERRIDES += ro.hardware.nfc_nci=nqx.default
-
-#OPENCORE
-OPENCORE := libomx_aacdec_sharedlibrary
-OPENCORE += libomx_avcdec_sharedlibrary
-OPENCORE += libomx_m4vdec_sharedlibrary
-OPENCORE += libomx_mp3dec_sharedlibrary
-OPENCORE += libopencore_author
-OPENCORE += libopencore_common
-OPENCORE += libopencore_download
-OPENCORE += libopencore_downloadreg
-OPENCORE += libopencore_mp4local
-OPENCORE += libopencore_mp4localreg
-OPENCORE += libopencore_net_support
-OPENCORE += libopencore_player
-OPENCORE += libopencore_rtsp
-OPENCORE += libopencore_rtspreg
-OPENCORE += libpvplayer_engine
-OPENCORE += libpvauthorengine
-OPENCORE += pvplayer
-OPENCORE += pvplayer_engine_test
+# OPENCORE
+PRODUCT_PACKAGES += \
+    libomx_aacdec_sharedlibrary \
+    libomx_avcdec_sharedlibrary \
+    libomx_m4vdec_sharedlibrary \
+    libomx_mp3dec_sharedlibrary \
+    libopencore_author \
+    libopencore_common \
+    libopencore_download \
+    libopencore_downloadreg \
+    libopencore_mp4local \
+    libopencore_mp4localreg \
+    libopencore_net_support \
+    libopencore_player \
+    libopencore_rtsp \
+    libopencore_rtspreg \
+    libpvplayer_engine \
+    libpvauthorengine \
+    pvplayer
 
 #PPP
-PPP := ip-up-vpn
+PRODUCT_PACKAGES += \
+    ip-up-vpn
 
-PROTOBUF := libprotobuf-cpp-full
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full
 
 #PVOMX
-PVOMX := libqcomm_omx
-PVOMX += 01_qcomm_omx
+PRODUCT_PACKAGES += \
+    libqcomm_omx \
+    01_qcomm_omx
 
 #RF4CE
-RF4CE := RemoTI_RNP.cfg
-RF4CE += rf4ce
-
-#SENSORS_HARDWARE
-SENSORS_HARDWARE := sensors.msm7630_surf
-SENSORS_HARDWARE += sensors.msm7630_fusion
+PRODUCT_PACKAGES += \
+    RemoTI_RNP.cfg \
+    rf4ce
 
 #SOFTAP
-SOFTAP := libQWiFiSoftApCfg
-SOFTAP += libqsap_sdk
-
-#STK
-STK := Stk
-
-#STM LOG
-STMLOG := libstm-log
-
-#TSLIB_EXTERNAL
-TSLIB_EXTERNAL := corgi
-TSLIB_EXTERNAL += dejitter
-TSLIB_EXTERNAL += inputraw
-TSLIB_EXTERNAL += linear
-TSLIB_EXTERNAL += variance
-TSLIB_EXTERNAL += pthres
-TSLIB_EXTERNAL += libtslib
-TSLIB_EXTERNAL += tsprint
-TSLIB_EXTERNAL += tstest
-TSLIB_EXTERNAL += tsutils
-TSLIB_EXTERNAL += tscalib
-TSLIB_EXTERNAL += ts
-
-#VR_HAL
-VR_HAL := vr.msm8998
-VR_HAL += vr.sdm845
-
-#QRGND
-QRGND := qrngd
-QRGND += qrngp
-QRGND += qrngtest
+PRODUCT_PACKAGES += \
+    libQWiFiSoftApCfg \
+    libqsap_sdk
 
 #WPA
-WPA := wpa_supplicant.conf
-WPA += wpa_cli
-WPA += wpa_supplicant_wcn.conf
-WPA += wpa_supplicant_ath6kl.conf
-WPA += wpa_supplicant
-WPA += hs20-osu-client
-
-#ZLIB
-ZLIB := gzip
-ZLIB += libunz
-ZLIB_HOST += minigzip
+PRODUCT_PACKAGES += \
+    wpa_supplicant.conf \
+    wpa_cli \
+    wpa_supplicant_wcn.conf \
+    wpa_supplicant
 
 #Charger
-CHARGER := charger
-CHARGER += charger_res_images
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images
 
 #VT_JNI
-VT_JNI := libvt_jni
-VT_JNI += libimscamera_jni
-
-# VT QTI Permissions
-VT_QTI_PERMISSIONS := qti_permissions.xml
+PRODUCT_PACKAGES += \
+    libvt_jni \
+    libimscamera_jni \
+    qti_permissions.xml
 
 #RCS
-RCS := rcs_service_aidl
-RCS += rcs_service_aidl.xml
-RCS += rcs_service_aidl_static
-RCS += rcs_service_api
-RCS += rcs_service_api.xml
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_aidl_static \
+    rcs_service_api \
+    rcs_service_api.xml
 
-#IMS SETTINGS
-IMS_SETTINGS := imssettings
-
-#IMS Extension module for Android Telephony
-IMS_EXT := ims-ext-common
-IMS_EXT += ims_ext_common.xml
-IMS_EXT += ConfURIDialer
-HIDL_WRAPPER := qti-telephony-hidl-wrapper
-HIDL_WRAPPER += qti_telephony_hidl_wrapper.xml
-QTI_TELEPHONY_UTILS := qti-telephony-utils
-QTI_TELEPHONY_UTILS += qti_telephony_utils.xml
+#IMS
+PRODUCT_PACKAGES += \
+    imssettings \
+    ims-ext-common \
+    ims_ext_common.xml \
+    ConfURIDialer \
+    qti-telephony-hidl-wrapper \
+    qti_telephony_hidl_wrapper.xml \
+    qti-telephony-utils \
+    qti_telephony_utils.xml
 
 #CRDA
-CRDA := crda
-CRDA += regdbdump
-CRDA += regulatory.bin
-CRDA += linville.key.pub.pem
-CRDA += init.crda.sh
-
-#WLAN
-WLAN := prima_wlan.ko
-WLAN += pronto_wlan.ko
-WLAN += qca_cld_wlan.ko
+PRODUCT_PACKAGES += \
+    crda \
+    regdbdump \
+    regulatory.bin \
+    linville.key.pub.pem
 
 #FSTMAN
-FSTMAN := fstman
-FSTMAN += fstman.ini
-
-#FD_LEAK
-FD_LEAK := libc_leak_detector
+PRODUCT_PACKAGES += \
+    fstman \
+    fstman.ini
 
 #servicetracker HAL
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.2-impl \
     vendor.qti.hardware.servicetracker@1.2-service
 
-PRODUCT_PACKAGES += $(ANGLE)
-PRODUCT_PACKAGES += $(APPOPS_POLICY)
-PRODUCT_PACKAGES += $(ATRACE_HAL)
-PRODUCT_PACKAGES += $(AUDIO_HARDWARE)
-PRODUCT_PACKAGES += $(AUDIO_WRAPPER)
-PRODUCT_PACKAGES += $(AMPLOADER)
-PRODUCT_PACKAGES += $(BRCTL)
-PRODUCT_PACKAGES += $(BSON)
-PRODUCT_PACKAGES += $(C2DCC)
-PRODUCT_PACKAGES += $(CIMAX)
-PRODUCT_PACKAGES += $(RCS)
-PRODUCT_PACKAGES += $(CONNECTIVITY)
-PRODUCT_PACKAGES += $(CHARGER)
-PRODUCT_PACKAGES += $(CURL)
-PRODUCT_PACKAGES += $(DASH)
-PRODUCT_PACKAGES += $(DATA_OS)
-PRODUCT_PACKAGES += $(EBTABLES)
-PRODUCT_PACKAGES += $(EXTENDEDMEDIA_EXT)
-PRODUCT_PACKAGES += $(HDMID)
-PRODUCT_PACKAGES += $(HOSTAPD)
-PRODUCT_PACKAGES += $(HIDL_WRAPPER)
-PRODUCT_PACKAGES += $(I420CC)
-PRODUCT_PACKAGES += $(INIT)
-PRODUCT_PACKAGES += $(IPROUTE2)
-PRODUCT_PACKAGES += $(IPTABLES)
-PRODUCT_PACKAGES += $(KEYPAD)
-PRODUCT_PACKAGES += $(KS)
-PRODUCT_PACKAGES += $(LIB_NL)
-PRODUCT_PACKAGES += $(LIB_XML2)
-PRODUCT_PACKAGES += $(LIBCAMERA)
-PRODUCT_PACKAGES += $(LIBGESTURES)
-PRODUCT_PACKAGES += $(LIBCOPYBIT)
-PRODUCT_PACKAGES += $(LIBGRALLOC)
-PRODUCT_PACKAGES += $(LIBMEMTRACK)
-PRODUCT_PACKAGES += $(LIBLIGHTS)
-PRODUCT_PACKAGES += $(LIBAUDIOPARAM)
-PRODUCT_PACKAGES += $(LIBAUDIORESAMPLER)
-PRODUCT_PACKAGES += $(LIBOPENCOREHW)
-PRODUCT_PACKAGES += $(LIBOVERLAY)
-PRODUCT_PACKAGES += $(LIBHWCOMPOSER)
-PRODUCT_PACKAGES += $(LIBGENLOCK)
-PRODUCT_PACKAGES += $(LIBPERFLOCK)
-PRODUCT_PACKAGES += $(LIBQCOMUI)
-PRODUCT_PACKAGES += $(LIBQDUTILS)
-PRODUCT_PACKAGES += $(LIBQDMETADATA)
-PRODUCT_PACKAGES += $(LIBPOWER)
-PRODUCT_PACKAGES += $(LOC_API)
-PRODUCT_PACKAGES += $(MEDIA_PROFILES)
-PRODUCT_PACKAGES += $(MM_AUDIO)
-PRODUCT_PACKAGES += $(MM_CORE)
-PRODUCT_PACKAGES += $(MM_WFD)
-PRODUCT_PACKAGES += $(MM_VIDEO)
-PRODUCT_PACKAGES += $(NQ_NFC)
-PRODUCT_PACKAGES += $(OPENCORE)
-PRODUCT_PACKAGES += $(PPP)
-PRODUCT_PACKAGES += $(PROTOBUF)
-PRODUCT_PACKAGES += $(PVOMX)
-PRODUCT_PACKAGES += $(QTI_TELEPHONY_UTILS)
-PRODUCT_PACKAGES += $(RF4CE)
-PRODUCT_PACKAGES += $(SENSORS_HARDWARE)
-#PRODUCT_PACKAGES += $(SOFTAP)
-PRODUCT_PACKAGES += $(STK)
-PRODUCT_PACKAGES += $(STMLOG)
-PRODUCT_PACKAGES += $(THERMAL_HAL)
-PRODUCT_PACKAGES += $(TSLIB_EXTERNAL)
-PRODUCT_PACKAGES += $(VR_HAL)
-PRODUCT_PACKAGES += $(QRGND)
-PRODUCT_PACKAGES += $(UPDATER)
-PRODUCT_PACKAGES += $(WPA)
-PRODUCT_PACKAGES += $(ZLIB)
-PRODUCT_HOST_PACKAGES += $(ZLIB_HOST)
-PRODUCT_PACKAGES += $(VT_JNI)
-PRODUCT_PACKAGES += $(VT_QTI_PERMISSIONS)
-PRODUCT_PACKAGES += $(IMS_SETTINGS)
-PRODUCT_PACKAGES += $(CRDA)
-PRODUCT_PACKAGES += $(WLAN)
-PRODUCT_PACKAGES += $(FSTMAN)
-PRODUCT_PACKAGES += $(FD_LEAK)
-PRODUCT_PACKAGES += $(IMS_EXT)
-
-PRODUCT_PACKAGES += move_wifi_data.sh
 PRODUCT_PACKAGES += librs_jni
 PRODUCT_PACKAGES += libion
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    make_ext4fs \
-    setup_fs
 
 # Qcril configuration file
 PRODUCT_PACKAGES += qcril.db
@@ -558,36 +390,30 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 TARGET_FS_CONFIG_GEN := device/xiaomi/sm6115/configs/config.fs
 
-ifeq ($(TARGET_HAS_LOW_RAM),true)
-    PRODUCT_PROPERTY_OVERRIDES += \
-        persist.vendor.qcomsysd.enabled=0
-else
-    PRODUCT_PROPERTY_OVERRIDES += \
-        persist.vendor.qcomsysd.enabled=1
-endif
 
-PRODUCT_PACKAGES += liboemaids_system
-PRODUCT_PACKAGES += liboemaids_vendor
+PRODUCT_PROPERTY_OVERRIDES += \
+        persist.vendor.qcomsysd.enabled=1
+
+PRODUCT_PACKAGES += \
+    liboemaids_system \
+    liboemaids_vendor
 
 # framework detect libs
-PRODUCT_PACKAGES += libvndfwk_detect_jni.qti
-PRODUCT_PACKAGES += libqti_vndfwk_detect
-PRODUCT_PACKAGES += libvndfwk_detect_jni.qti.vendor
-PRODUCT_PACKAGES += libqti_vndfwk_detect.vendor
+PRODUCT_PACKAGES += \
+    libvndfwk_detect_jni.qti \
+    libqti_vndfwk_detect \
+    libvndfwk_detect_jni.qti.vendor \
+    libqti_vndfwk_detect.vendor
 
 # vndservicemanager
 PRODUCT_PACKAGES += vndservicemanager
 
-PRODUCT_BRAND := qcom
-PRODUCT_AAPT_CONFIG += hdpi mdpi
-
-PRODUCT_MANUFACTURER := QUALCOMM
+PRODUCT_AAPT_CONFIG += xxxhdpi
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     persist.backup.ntpServer=0.pool.ntp.org \
     sys.vendor.shutdown.waittime=500
-
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
@@ -640,8 +466,6 @@ PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
 
 # RRO configuration
 TARGET_USES_RRO := true
-
-QCOM_BOARD_PLATFORMS += bengal
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
@@ -699,9 +523,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
 
-PRODUCT_PACKAGES += wifilearner
-PRODUCT_PACKAGES += dppdaemon
-PRODUCT_PACKAGES += wpa_cli
+PRODUCT_PACKAGES += \
+    wifilearner \
+    dppdaemon \
+    wpa_cli
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.aware.interface=wifi-aware0
