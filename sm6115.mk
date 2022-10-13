@@ -19,11 +19,8 @@ PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
 
 # Audio
-PRODUCT_PACKAGES += \
-    audio.primary.bengal \
-    libqahw \
-    libqahwwrapper \
-    amploader
+$(call inherit-product, hardware/qcom-caf/sm8250/audio/configs/common/default.mk)
+$(call inherit-product, hardware/qcom-caf/sm8250/audio/configs/bengal/bengal.mk)
 
 #BRCTL
 PRODUCT_PACKAGES += \
