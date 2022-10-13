@@ -141,11 +141,14 @@ BUILD_BROKEN_DUP_RULES := true
 # Enable QG user space
 PMIC_QG_SUPPORT := true
 
-#----------------------------------------------------------------------
-# wlan specific
-#----------------------------------------------------------------------
-ifeq ($(strip $(BOARD_HAS_QCOM_WLAN)),true)
-include device/qcom/wlan/bengal/BoardConfigWlan.mk
-endif
+# WiFi
+TARGET_USES_AOSP_FOR_WLAN := false
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+WIFI_HIDL_FEATURE_AWARE := true
+QC_WIFI_HIDL_FEATURE_DUAL_AP := true
+TARGET_CAL_DATA_CLEAR := true
+WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
+WIFI_DRIVER_STATE_ON := "ON"
+WIFI_DRIVER_STATE_OFF := "OFF"
 
 include device/qcom/sepolicy_vndr/SEPolicy.mk

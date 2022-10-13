@@ -686,7 +686,22 @@ ro.crypto.allow_encrypt_override = true
 PRODUCT_PACKAGES += init.qti.dcvs.sh
 PRODUCT_PACKAGES += android.hardware.lights-service.qti
 
-#----------------------------------------------------------------------
-# wlan specific
-#----------------------------------------------------------------------
-include device/qcom/wlan/bengal/wlan.mk
+# WiFi
+PRODUCT_COPY_FILES += \
+    device/xiaomi/sm6115/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/xiaomi/sm6115/configs/wlan/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    device/xiaomi/sm6115/configs/wlan/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    device/xiaomi/sm6115/configs/wlan/icm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/icm.conf \
+    device/xiaomi/sm6115/configs/wlan/hostapd.accept:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.accept \
+    device/xiaomi/sm6115/configs/wlan/hostapd.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.conf \
+    device/xiaomi/sm6115/configs/wlan/hostapd.deny:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.deny \
+    frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml \
+    frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
+    frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
+
+PRODUCT_PACKAGES += wifilearner
+PRODUCT_PACKAGES += dppdaemon
+PRODUCT_PACKAGES += wpa_cli
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	wifi.aware.interface=wifi-aware0
