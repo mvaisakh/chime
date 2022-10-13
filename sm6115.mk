@@ -349,7 +349,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # gps/location secuity configuration file
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+    device/xiaomi/sm6115-common/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 #copy codecs_xxx.xml to (TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_COPY_FILES += \
@@ -360,7 +360,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
-    device/xiaomi/sm6115/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml
+    device/xiaomi/sm6115-common/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
@@ -378,8 +378,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml
 
 
-DEVICE_PACKAGE_OVERLAYS += device/xiaomi/sm6115/device/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/xiaomi/sm6115/product/overlay
+DEVICE_PACKAGE_OVERLAYS += device/xiaomi/sm6115-common/device/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/xiaomi/sm6115-common/product/overlay
 
 TARGET_KERNEL_VERSION := 4.19
 
@@ -388,7 +388,7 @@ PRODUCT_PROPERTY_OVERRIDES += persist.radio.multisim.config=dsds
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     vendor.usb.diag.func.name=diag
 
-TARGET_FS_CONFIG_GEN := device/xiaomi/sm6115/configs/config.fs
+TARGET_FS_CONFIG_GEN := device/xiaomi/sm6115-common/configs/config.fs
 
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -424,10 +424,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/configs/permissions/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+    device/xiaomi/sm6115-common/configs/permissions/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
+    device/xiaomi/sm6115-common/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
 
 # Permission for Wi-Fi passpoint support
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
@@ -512,13 +512,13 @@ PRODUCT_PACKAGES += android.hardware.lights-service.qti
 
 # WiFi
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
-    device/xiaomi/sm6115/configs/wlan/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-    device/xiaomi/sm6115/configs/wlan/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    device/xiaomi/sm6115/configs/wlan/icm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/icm.conf \
-    device/xiaomi/sm6115/configs/wlan/hostapd.accept:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.accept \
-    device/xiaomi/sm6115/configs/wlan/hostapd.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.conf \
-    device/xiaomi/sm6115/configs/wlan/hostapd.deny:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.deny \
+    device/xiaomi/sm6115-common/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/xiaomi/sm6115-common/configs/wlan/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    device/xiaomi/sm6115-common/configs/wlan/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    device/xiaomi/sm6115-common/configs/wlan/icm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/icm.conf \
+    device/xiaomi/sm6115-common/configs/wlan/hostapd.accept:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.accept \
+    device/xiaomi/sm6115-common/configs/wlan/hostapd.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.conf \
+    device/xiaomi/sm6115-common/configs/wlan/hostapd.deny:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/hostapd.deny \
     frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml \
     frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml

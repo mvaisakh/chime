@@ -41,9 +41,9 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_AVB_ENABLE := true
 
 # Vintf
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115/configs/vintf/framework_manifest.xml
-DEVICE_MANIFEST_FILE := device/xiaomi/sm6115/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE   := device/xiaomi/sm6115/configs/vintf/compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/framework_manifest.xml
+DEVICE_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/manifest.xml
+DEVICE_MATRIX_FILE   := device/xiaomi/sm6115-common/configs/vintf/compatibility_matrix.xml
 
 BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
@@ -74,7 +74,7 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Define the Dynamic Partition sizes and groups.
 BOARD_SUPER_PARTITION_SIZE := 4294967296
-TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115/rootdir/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115-common/rootdir/etc/recovery.fstab
 
 # Enable DTBO for recovery image
 BOARD_INCLUDE_RECOVERY_DTBO := true
