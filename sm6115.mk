@@ -29,6 +29,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     brctl
 
+# Display
+$(call inherit-product, hardware/qcom-caf/sm8250/display/config/display-board.mk)
+$(call inherit-product, hardware/qcom-caf/sm8250/display/config/display-product.mk)
+
 #EBTABLES
 PRODUCT_PACKAGES += \
     ebtables \
