@@ -151,9 +151,6 @@ AUDIO_HARDWARE += audio.primary.sdm845
 AUDIO_HARDWARE += audio.primary.apq8098_latv
 AUDIO_HARDWARE += audio.primary.sdm710
 AUDIO_HARDWARE += audio.primary.qcs605
-ifeq ($(TARGET_BOARD_AUTO), true)
-AUDIO_HARDWARE += audio.primary.msmnile.casa
-endif
 AUDIO_HARDWARE += audio.primary.msmnile
 AUDIO_HARDWARE += audio.primary.sdmshrike
 AUDIO_HARDWARE += audio.primary.$(MSMSTEPPE)
@@ -294,9 +291,6 @@ INIT += init.qti.ims.sh
 INIT += init.qcom.coex.sh
 INIT += init.qcom.early_boot.sh
 INIT += init.qcom.post_boot.sh
-ifeq ($(TARGET_BOARD_AUTO), true)
-INIT += sku-info.sh
-endif
 INIT += init.qcom.syspart_fixup.sh
 INIT += init.qcom.rc
 INIT += init.recovery.qcom.rc
@@ -327,11 +321,6 @@ INIT += init.qcom.crashdata.sh
 INIT += init.qcom.vendor.rc
 INIT += init.target.vendor.rc
 INIT += init.veth_ipa_config.sh
-ifeq ($(strip $(TARGET_BOARD_AUTO)),true)
-ifneq ($(strip $(ENABLE_HYP)),true)
-INIT += init.qti.can.sh
-endif
-endif
 
 #IPROUTE2
 IPROUTE2 := ip
@@ -749,8 +738,6 @@ RF4CE += rf4ce
 #SENSORS_HARDWARE
 SENSORS_HARDWARE := sensors.msm7630_surf
 SENSORS_HARDWARE += sensors.msm7630_fusion
-SENSORS_HARDWARE += sensors.msm8996_auto
-SENSORS_HARDWARE += sensors.msmnile.asm_auto
 
 #SOFTAP
 SOFTAP := libQWiFiSoftApCfg
@@ -1144,13 +1131,8 @@ endif
 ifneq ($(strip $(TARGET_USES_RRO)),true)
 # enable overlays to use our version of
 # source/resources etc.
-ifneq ($(strip $(TARGET_BOARD_AUTO)),true)
 DEVICE_PACKAGE_OVERLAYS += device/qcom/common/device/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/product/overlay
-else
-DEVICE_PACKAGE_OVERLAYS += device/qcom/common/automotive/device/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/automotive/product/overlay
-endif
 endif
 
 # Set up flags to determine the kernel version
