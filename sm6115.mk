@@ -326,6 +326,12 @@ PRODUCT_PACKAGES += tcmiface
 # healthd libaray expanded for mode charger
 PRODUCT_PACKAGES += libhealthd.msm
 
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0-impl \
+    android.hardware.health@1.0-convert \
+    android.hardware.health@2.0-service
+
 PRODUCT_COPY_FILES := \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
@@ -350,6 +356,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # gps/location secuity configuration file
 PRODUCT_COPY_FILES += \
     device/xiaomi/sm6115-common/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+
+PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 
 #copy codecs_xxx.xml to (TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_COPY_FILES += \
@@ -403,7 +411,46 @@ PRODUCT_PACKAGES += \
     libvndfwk_detect_jni.qti \
     libqti_vndfwk_detect \
     libvndfwk_detect_jni.qti.vendor \
-    libqti_vndfwk_detect.vendor
+    libqti_vndfwk_detect.vendor \
+    libqti_vndfwk_detect_system \
+    libqti_vndfwk_detect_vendor \
+    libvndfwk_detect_jni.qti_system \
+    libvndfwk_detect_jni.qti_vendor
+
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-service \
+    android.hardware.broadcastradio@1.0-impl
+
+# Camera configuration file. Shared by passthrough/binderized camera HAL
+PRODUCT_PACKAGES += camera.device@3.2-impl
+PRODUCT_PACKAGES += camera.device@1.0-impl
+PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-impl
+# Enable binderized camera HAL
+PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-service_64
+
+# Context hub HAL
+PRODUCT_PACKAGES += \
+    android.hardware.contexthub@1.0-impl.generic \
+    android.hardware.contexthub@1.0-service
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    device/xiaomi/sm6115-common/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
+    device/xiaomi/sm6115-common/configs/permissions/privapp-permissions-qti-system-ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti-system-ext.xml
+
+# Public libraries
+PRODUCT_COPY_FILES += \
+    device/xiaomi/sm6115-common/configs/public.libraries.product-qti.txt:$(TARGET_COPY_OUT_PRODUCT)/etc/public.libraries-qti.txt \
+    device/xiaomi/sm6115-common/configs/public.libraries.system_ext-qti.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-qti.txt
+
+#PASR HAL and APP
+PRODUCT_PACKAGES += \
+    vendor.qti.power.pasrmanager@1.0-service \
+    vendor.qti.power.pasrmanager@1.0-impl \
+    pasrservice
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.device_config.runtime_native_boot.iorap_perfetto_enable=true
 
 # vndservicemanager
 PRODUCT_PACKAGES += vndservicemanager
@@ -424,10 +471,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115-common/configs/permissions/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
-
-PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115-common/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
+    device/xiaomi/sm6115-common/configs/permissions/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml \
+    device/xiaomi/sm6115-common/configs/permissions/qti_whitelist_system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/qti_whitelist_system_ext.xml
 
 # Permission for Wi-Fi passpoint support
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
@@ -509,6 +554,10 @@ ro.crypto.allow_encrypt_override = true
 
 PRODUCT_PACKAGES += init.qti.dcvs.sh
 PRODUCT_PACKAGES += android.hardware.lights-service.qti
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0
 
 # WiFi
 PRODUCT_COPY_FILES += \
