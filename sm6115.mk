@@ -15,7 +15,6 @@ APPOPS_POLICY := appops_policy.xml
 #ATRACE_HAL
 ATRACE_HAL := android.hardware.atrace@1.0-service
 
-
 AUDIO_HARDWARE += audio.primary.bengal
 
 #HAL Wrapper
@@ -127,7 +126,6 @@ INIT += init.veth_ipa_config.sh
 #IPROUTE2
 IPROUTE2 := ip
 IPROUTE2 += libiprouteutil
-
 
 #IPTABLES
 IPTABLES := libiptc
@@ -607,8 +605,6 @@ PRODUCT_COPY_FILES += \
 
 # Permission for Wi-Fi passpoint support
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml
-
-PRODUCT_PRIVATE_KEY := device/xiaomi/sm6115/qcom.key
 
 SHIPPING_API_LEVEL := 29
 PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
