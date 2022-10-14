@@ -4,7 +4,7 @@
 #
 # SPDX-License-Identifer: Apache-2.0
 
-$(call inherit-product, build/make/target/product/gsi_keys.mk)
+$(call inherit-product, build/make/target/product/developer_gsi_keys.mk)
 
 # Inherit vendor tree
 $(call inherit-product, vendor/xiaomi/sm6115-common/sm6115-common-vendor.mk)
