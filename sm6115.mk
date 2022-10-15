@@ -4,7 +4,24 @@
 #
 # SPDX-License-Identifer: Apache-2.0
 
-$(call inherit-product, build/make/target/product/gsi_keys.mk)
+$(call inherit-product, build/make/target/product/developer_gsi_keys.mk)
+
+# Platform
+PRODUCT_BOARD_PLATFORM := bengal
+PRODUCT_USES_QCOM_HARDWARE := true
+
+# Kernel
+TARGET_KERNEL_DIR := device/xiaomi/chime-kernel
+
+LOCAL_KERNEL := $(TARGET_KERNEL_DIR)/Image
+
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+
+$(call inherit-product, vendor/xiaomi/sm6115-common/sm6115-common-vendor.mk)
+
+$(call inherit-product, vendor/qcom/opensource/usb/vendor_product.mk)
+$(call inherit-product, vendor/qcom/opensource/power/power-vendor-board.mk)
+$(call inherit-product, vendor/qcom/opensource/power/power-vendor-product.mk)
 
 #ANGLE
 PRODUCT_PACKAGES += \
@@ -297,7 +314,7 @@ PRODUCT_COPY_FILES += \
 
 # Public libraries
 PRODUCT_COPY_FILES += \
-    device/xiaomi/sm6115-common/configs/public.libraries.product-qti.txt:$(TARGET_COPY_OUT_PRODUCT)/etc/public.libraries-qti.txt \
+    device/xiaomi/sm6115-common/configs/public.libraries-qti.txt:$(TARGET_COPY_OUT_PRODUCT)/etc/public.libraries-qti.txt \
     device/xiaomi/sm6115-common/configs/public.libraries.system_ext-qti.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-qti.txt
 
 #PASR HAL and APP
