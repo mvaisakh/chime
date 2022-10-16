@@ -14,8 +14,6 @@ COMMON_PATH := device/xiaomi/sm6115-common
 # Broken rules
 BUILD_BROKEN_DUP_RULES := true
 
-BOARD_SYSTEMSDK_VERSIONS := $(SHIPPING_API_LEVEL)
-
 # Platform
 TARGET_BOARD_PLATFORM := bengal
 TARGET_NO_BOOTLOADER := false
