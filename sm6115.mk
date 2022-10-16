@@ -302,6 +302,10 @@ PRODUCT_COPY_FILES += \
     device/xiaomi/sm6115-common/configs/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
     device/xiaomi/sm6115-common/configs/permissions/privapp-permissions-qti-system-ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti-system-ext.xml
 
+# Power
+$(call inherit-product, vendor/qcom/opensource/power/power-vendor-board.mk)
+$(call inherit-product, vendor/qcom/opensource/power/power-vendor-product.mk)
+
 # Public libraries
 PRODUCT_COPY_FILES += \
     device/xiaomi/sm6115-common/configs/public.libraries-qti.txt:$(TARGET_COPY_OUT_PRODUCT)/etc/public.libraries-qti.txt \
