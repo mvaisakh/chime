@@ -9,6 +9,8 @@
 # Product-specific compile-time definitions.
 #
 
+COMMON_PATH := device/xiaomi/sm6115-common
+
 # Broken rules
 BUILD_BROKEN_DUP_RULES := true
 
@@ -91,7 +93,7 @@ TARGET_USES_INTERACTION_BOOST := true
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
-TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115-common/rootdir/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/recovery.fstab
 
 # SEPolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
@@ -112,9 +114,9 @@ BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # Vintf
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/framework_manifest.xml
-DEVICE_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE   := device/xiaomi/sm6115-common/configs/vintf/compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(COMMON_PATH)/configs/vintf/framework_manifest.xml
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/configs/vintf/manifest.xml
+DEVICE_MATRIX_FILE   := $(COMMON_PATH)/configs/vintf/compatibility_matrix.xml
 
 # WiFi
 TARGET_USES_AOSP_FOR_WLAN := false
