@@ -73,6 +73,7 @@ PRODUCT_PACKAGES += \
     ssr_setup \
     init.mdm.sh \
     fstab.qti \
+    ramdisk-fstab.qti \
     init.qcom.sensors.sh
 
 # Media
@@ -360,7 +361,6 @@ PRODUCT_PACKAGES += android.hardware.fastboot@1.0-impl-mock
 PRODUCT_PACKAGES += \
  checkpoint_gc
 
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/rootdir/etc/fstab.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.default
 BOARD_AVB_VBMETA_SYSTEM := system
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
