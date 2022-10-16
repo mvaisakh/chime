@@ -427,6 +427,9 @@ PRODUCT_PACKAGES += android.hardware.lights-service.qti
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0
 
+# USB
+$(call inherit-product, vendor/qcom/opensource/usb/vendor_product.mk)
+
 # WiFi
 PRODUCT_COPY_FILES += \
     device/xiaomi/sm6115-common/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
