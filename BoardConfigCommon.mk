@@ -96,7 +96,7 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qti
 
 # SEPolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
