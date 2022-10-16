@@ -9,6 +9,11 @@ $(call inherit-product, build/make/target/product/developer_gsi_keys.mk)
 # Inherit vendor tree
 $(call inherit-product, vendor/xiaomi/sm6115-common/sm6115-common-vendor.mk)
 
+# Kernel
+TARGET_KERNEL_DIR := device/xiaomi/sm6115-kernel
+PRODUCT_COPY_FILES += \
+   $(TARGET_KERNEL_DIR)/Image:kernel
+
 #ANGLE
 PRODUCT_PACKAGES += \
     libangle
