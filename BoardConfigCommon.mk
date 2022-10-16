@@ -9,11 +9,17 @@
 # Product-specific compile-time definitions.
 #
 
+# Broken rules
+BUILD_BROKEN_DUP_RULES := true
+
 BOARD_SYSTEMSDK_VERSIONS := $(SHIPPING_API_LEVEL)
 
+# Platform
 TARGET_BOARD_PLATFORM := bengal
-TARGET_BOOTLOADER_BOARD_NAME := bengal
+TARGET_NO_BOOTLOADER := false
+TARGET_USES_UEFI := true
 
+# Architechture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a-branchprot
 TARGET_CPU_ABI := arm64-v8a
@@ -26,72 +32,29 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a9
 
-TARGET_HW_DISK_ENCRYPTION := true
-TARGET_HW_DISK_ENCRYPTION_PERF := true
-
-TARGET_USES_AOSP := false
-TARGET_USES_AOSP_FOR_AUDIO := false
-TARGET_USES_QCOM_BSP := false
-
-BOARD_DYNAMIC_PARTITION_ENABLE := true
-
-TARGET_USES_NEW_ION := true
-TARGET_USE_VENDOR_CAMERA_EXT := true
-
-#Enable suspend during charger mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
-
-BOARD_AVB_ENABLE := true
-
-# Vintf
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/framework_manifest.xml
-DEVICE_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE   := device/xiaomi/sm6115-common/configs/vintf/compatibility_matrix.xml
-
-BOARD_KERNEL_SEPARATED_DTBO := true
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-
-TARGET_NO_BOOTLOADER := false
-TARGET_USES_UEFI := true
+# Kernel
 TARGET_NO_KERNEL := false
-
-BOARD_PRESIL_BUILD := true
--include $(QCPATH)/common/bengal/BoardConfigVendor.mk
-
-USE_OPENGL_RENDERER := true
-
-#Enable dtb in boot image and boot image header version 2 support.
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-# Set Header version for bootimage
+BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_BOOTIMG_HEADER_VERSION := 2
-BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0x4a90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7
+TARGET_KERNEL_VERSION := 4.19
+BOARD_KERNEL_BASE        := 0x00000000
+BOARD_KERNEL_PAGESIZE    := 4096
+BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
+BOARD_RAMDISK_OFFSET     := 0x02000000
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 
-ifeq ($(BOARD_AVB_ENABLE), true)
-   BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-   BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
-   BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
-   BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
-endif
-
+# Partitions
+BOARD_DYNAMIC_PARTITION_ENABLE := true
 BOARD_USES_METADATA_PARTITION := true
-
-# Define the Dynamic Partition sizes and groups.
-BOARD_SUPER_PARTITION_SIZE := 4294967296
-TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115-common/rootdir/etc/recovery.fstab
-
-# Enable DTBO for recovery image
-BOARD_INCLUDE_RECOVERY_DTBO := true
-
+BOARD_SUPER_PARTITION_SIZE := 8589934592
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 # BOARD_QTI_DYNAMIC_PARTITIONS_SIZE = (BOARD_SUPER_PARTITION_SIZE/2) - 4MB
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 4290772992
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := vendor
 BOARD_EXT4_SHARE_DUP_BLOCKS := true
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x06000000
-
-TARGET_COPY_OUT_VENDOR := vendor
-BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
-
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x06000000
@@ -103,57 +66,55 @@ BOARD_DTBOIMG_PARTITION_SIZE := 0x0800000
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
+TARGET_COPY_OUT_VENDOR := vendor
+TARGET_COPY_OUT_PRODUCT := product
+TARGET_COPY_OUT_SYSTEM_EXT := system_ext
+
+# Display
 TARGET_USES_ION := true
+TARGET_USES_NEW_ION := true
 TARGET_USES_NEW_ION_API :=true
+USE_OPENGL_RENDERER := true
 
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0x4a90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7
-TARGET_KERNEL_VERSION := 4.19
-BOARD_KERNEL_BASE        := 0x00000000
-BOARD_KERNEL_PAGESIZE    := 4096
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
 
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-MAX_EGL_CACHE_SIZE := 2048*1024
+# Media
+TARGET_ENABLE_MEDIADRM_64 := true
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
+# RPC
 TARGET_NO_RPC := true
 
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-
-# Enable debugfs restrictions
-PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
-
-#Disable appended dtb.
-TARGET_KERNEL_APPEND_DTB := false
-TARGET_COMPILE_WITH_MSM_KERNEL := true
-
-#Enable PD locater/notifier
-TARGET_PD_SERVICE_ENABLED := true
-
-#Enable INTERACTION_BOOST
+# Power
 TARGET_USES_INTERACTION_BOOST := true
 
-#Enable peripheral manager
-TARGET_PER_MGR_ENABLED := true
+# Recovery
+BOARD_INCLUDE_RECOVERY_DTBO := true
+TARGET_RECOVERY_FSTAB := device/xiaomi/sm6115-common/rootdir/etc/recovery.fstab
 
-#Enable 64 bit compilation for DRM plugins
-TARGET_ENABLE_MEDIADRM_64 := true
+# SEPolicy
+include device/qcom/sepolicy_vndr/SEPolicy.mk
 
-# Enable sensor multi HAL
+# Sensors
 USE_SENSOR_MULTI_HAL := true
 
-#flag for qspm compilation
-TARGET_USES_QSPM := true
-
-BUILD_BROKEN_DUP_RULES := true
-
-# Enable QG user space
-PMIC_QG_SUPPORT := true
-
 # Verity
+BOARD_AVB_ENABLE := true
+ifeq ($(BOARD_AVB_ENABLE), true)
+   BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+   BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+   BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
+   BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+endif
 BOARD_AVB_SYSTEM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+
+# Vintf
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/framework_manifest.xml
+DEVICE_MANIFEST_FILE := device/xiaomi/sm6115-common/configs/vintf/manifest.xml
+DEVICE_MATRIX_FILE   := device/xiaomi/sm6115-common/configs/vintf/compatibility_matrix.xml
 
 # WiFi
 TARGET_USES_AOSP_FOR_WLAN := false
@@ -164,5 +125,3 @@ TARGET_CAL_DATA_CLEAR := true
 WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
 WIFI_DRIVER_STATE_ON := "ON"
 WIFI_DRIVER_STATE_OFF := "OFF"
-
-include device/qcom/sepolicy_vndr/SEPolicy.mk
