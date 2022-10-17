@@ -78,7 +78,7 @@ PRODUCT_PACKAGES += \
     ssr_setup \
     init.mdm.sh \
     fstab.qti \
-    ramdisk-fstab.qti \
+    fstab.qti.ramdisk \
     init.qcom.sensors.sh
 
 # Media
