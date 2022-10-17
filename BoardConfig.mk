@@ -4,3 +4,5 @@
 # SPDX-License-Identifer: Apache-2.0
 
 include device/xiaomi/sm6115-common/BoardConfigCommon.mk
+
+TARGET_SCREEN_DENSITY := 400
