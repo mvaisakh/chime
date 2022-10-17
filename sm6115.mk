@@ -256,10 +256,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml
 
-
-DEVICE_PACKAGE_OVERLAYS += device/xiaomi/sm6115-common/device/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/xiaomi/sm6115-common/product/overlay
-
 TARGET_KERNEL_VERSION := 4.19
 
 PRODUCT_PROPERTY_OVERRIDES += persist.radio.multisim.config=dsds
@@ -421,6 +417,14 @@ ro.crypto.allow_encrypt_override = true
 
 PRODUCT_PACKAGES += init.qti.dcvs.sh
 PRODUCT_PACKAGES += android.hardware.lights-service.qti
+
+# Overlays
+PRODUCT_PACKAGES += \
+    SM6115CellBroadcastReceiverOverlay \
+    SM6115FrameworksOverlay \
+    SM6115SystemUIOverlay \
+    SM6115TelephonyOverlay \
+    SM6115WifiResOverlay
 
 # Thermal
 PRODUCT_PACKAGES += \
