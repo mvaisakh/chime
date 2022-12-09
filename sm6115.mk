@@ -27,7 +27,7 @@ PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
 
 # Audio
-$(call inherit-product, hardware/qcom-caf/sm8250/audio/configs/common/default.mk)
+$(call inherit-product, hardware/qcom-caf/sm8250/audio/configs/qssi/qssi.mk)
 $(call inherit-product, hardware/qcom-caf/sm8250/audio/configs/bengal/bengal.mk)
 
 #BRCTL
