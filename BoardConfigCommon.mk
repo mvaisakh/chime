@@ -13,6 +13,7 @@ COMMON_PATH := device/xiaomi/sm6115-common
 
 # Broken rules
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Platform
 TARGET_BOARD_PLATFORM := bengal
