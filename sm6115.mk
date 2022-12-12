@@ -83,6 +83,19 @@ PRODUCT_PACKAGES += \
 # Media
 $(call inherit-product, hardware/qcom-caf/sm8250/media/conf_files/bengal/bengal.mk)
 
+PRODUCT_PACKAGES += \
+   android.hardware.media.omx@1.0-service
+
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    libOmxCore \
+    libc2dcolorconvert \
+    libOmxSwVdec \
+    libOmxVdec \
+    libOmxVenc \
+    libstagefrighthw \
+    init.qti.media.sh
+
 # LIB_NL
 PRODUCT_PACKAGES += \
     libnl_2
