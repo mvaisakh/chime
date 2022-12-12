@@ -39,7 +39,6 @@ PRODUCT_USES_QCOM_HARDWARE := true
 PRODUCT_BOARD_PLATFORM := bengal
 
 # Display
-$(call inherit-product, hardware/qcom-caf/sm8250/display/config/display-board.mk)
 $(call inherit-product, hardware/qcom-caf/sm8250/display/config/display-product.mk)
 
 #EBTABLES
