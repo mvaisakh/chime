@@ -4,6 +4,9 @@
 #
 # SPDX-License-Identifer: Apache-2.0
 
+LOCAL_PATH := $(call my-dir)
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
 # create symbolic links for INI file
 $(shell mkdir -p $(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld; \
 ln -sf /vendor/etc/wifi/WCNSS_qcom_cfg.ini \

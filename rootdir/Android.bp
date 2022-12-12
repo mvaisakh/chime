@@ -135,5 +135,4 @@ prebuilt_etc {
     name: "fstab.qti",
     src: "etc/fstab.qti",
     vendor: true,
-    ramdisk_available: true,
 }
